@@ -1,0 +1,55 @@
+html,body{
+	height: 100%;
+}
+header{
+	padding: 1em 0;
+}
+footer{
+	padding: 1em 0;
+}
+.fc{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.margin-top{
+	margin-top: 1em;
+}
+.margin-top2{
+	margin-top: 2em;
+}
+.margin-bot{
+	margin-bottom: 1em;
+}
+.margin-bot2{
+	margin-bottom: 2em;
+}
+.paddingside{
+	padding: 0 1em;
+}
+.paddingside05{
+	padding: 0 .5em;
+}
+.fonwei{
+	font-weight: bold;
+}
+.margin0{
+	margin: 0;
+}
+a:hover{
+	text-decoration: none;
+}
+.flexBet{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.flexStart{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+.list-inline>li.active{background-color: orange;}
+i{
+	font-style: unset !important;
+}

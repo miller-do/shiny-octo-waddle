@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{$articleres.title}—文章详情</title>
+		<link rel="stylesheet" type="text/css" href="__ROOT__/home/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="__ROOT__/static/loaders.css.min.css"/>
+		<link rel="stylesheet" type="text/css" href="__ROOT__/home/css/style.css"/>
+		<script src="../../../../public/static/jquery-2.0.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../../public/home/js/layer/2.4/layer.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body{background-color: #eee;}
+			.loading{
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: 9;
+			}
+		</style>
+	</head>
+	<body>
+		<main class="">
+			{include file="common/header" /}
+			<div class="container">
+				<ul class="breadcrumb margin-top">
+				    <li><a href="#">Home</a></li>
+				    <li><a href="#">2013</a></li>
+				    <li class="active">十一月</li>
+				</ul>
+				<div class="row">
+					<div class="col-md-8">
+						<div class="well well-small flexBet">
+							<h2>{$articleres.title}</h2>
+							<div class="flexStart margin-top2">
+								<div class="paddingside" style="width: 6em;">
+									<img src="__ROOT__/home/img/zirsn.png" class="img-responsive">
+								</div>
+								<div class="">
+									<p class="">南台观芸秀</p>
+									<p class="">2020.05.08 22:09:59 字数 144阅读 24</p>
+								</div>
+							</div>
+						</div>
+						<div class="bg-danger margin-bot">
+							<div class="panel panel-default">
+								<div class="panel-heading"> 文章正文 </div>
+								<div class="panel-body">
+									{$articleres.content}
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading"> 精彩评论 </div>
+							<div class="panel-body">
+								<form action="{:url('home/comment/index')}" method="post" enctype="multipart/form-data" >
+									<input type="hidden" name="article_id" id="" value="{$articleres.id}" />
+									<input type="hidden" name="article_cateid" id="" value="{$articleres.cateid}" />
+									<div class="flexStart" style="align-items: flex-start;">
+										<div class="paddingside" style="width: 10%;">
+											<img src="__ROOT__/home/img/zirsn.png" class="img-responsive">
+										</div>
+										<div class="" style="width: 90%;">
+											<textarea rows="3" name="comment" placeholder="写下你的评论……" style="width: 100%; padding: 5px;resize: none;"></textarea>
+										</div>
+									</div>
+									<div class="text-right">
+										<input type="submit" class="btn btn-primary btn-small" value="发表评论"/>
+									</div>
+								</form>
+								<div class="">
+									<div class="margin-bot" style="border-bottom: 1px solid #ddd;">
+										<div class="paddingside margin-bot" style="border-left: 3px solid #D43F3A;">
+											全部评论
+										</div>
+									</div>
+									
+									<ul class="list-unstyled">
+										{if condition="$commentres neq null"}
+											{foreach name="commentres" item="vo" }
+											<li class="paddinside" style="border-bottom: 1px dashed #ddd;padding: 6px 0">
+												<div class="tit flexStart" style="align-items: flex-start;">
+													<div class="paddingside" style="width: 6em;">
+														<img src="__ROOT__/home/img/zirsn.png" class="img-responsive">
+													</div>
+													<div class="">
+														<div class="">
+															<div>{$vo.nickname}</div>
+															<div class="text-muted"><span>{$vo.comment_time}</span> </div>
+														</div>
+														<div class="">
+															<p> {$vo.content}</p>
+															<div>
+																<a href="" class="text-muted">{$vo.like_count}赞</a>
+																<a href="" class="text-muted">回复</a>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											{/foreach}
+										{else /}
+											<div class="text-center">
+												暂无评论，<a href="javascript:;" class="text-muted">点击抢沙发</a>
+											</div>
+										{/if}
+										
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-info margin-bot">
+							<div class="panel-heading"> 推荐阅读 </div>
+							<div class="panel-body">
+								<ul>
+									<li><a href="">反对共和时代符合双方根据官方</a></li>
+									<li><a href="">反对共和时代符合双方根据官方</a></li>
+									<li><a href="">反对共和时代符合双方根据官方</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="panel panel-info">
+							<div class="panel-heading"> 推荐阅读 </div>
+							<div class="panel-body">
+								<ul>
+									<li><a href="">反对共和时代符合双方根据官方</a></li>
+									<li><a href="">反对共和时代符合双方根据官方</a></li>
+									<li><a href="">反对共和时代符合双方根据官方</a></li>
+									<li><a href="">反对共和时代符合双方根据官方</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+			{include file="common/footer" /}
+		</main>
+		<script type="text/javascript">
+			/* var loading=document.getElementsByClassName('loading');
+			document.onreadystatechange=function() {
+				if (document.readyState=="complete") {
+					$(".loading").fadeOut();
+				}
+			} */
+		</script>
+	</body>
+</html>

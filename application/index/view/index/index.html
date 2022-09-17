@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!-- <link rel="stylesheet" type="text/css" href="__PUBLIC__/index/css/bootstrap.min.css" /> -->
+		{load href="__PUBLIC__/index/css/bootstrap.min.css" /}
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/index/css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../public/index/js/videojs7_5_5/css/video-js.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../../public/index/css/style.css" />
+		<script src="__ROOT__/index/js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<!-- {load href="/static/js/common.js" /} -->
+		<script src="../../../../public/index/js/swper5.0.1.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body {
+				background-color: #ddd;
+			}
+
+			.swiper-slide img {
+				width: 100%;
+			}
+		</style>
+	</head>
+
+	<body class="">
+		{include file="common/header"/}
+		<main class="">
+			<div class="">
+				<banner class="">
+					<!-- Swiper -->
+					<div class="swiper-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide"><img src="__PUBLIC__/index/img/banner.jpg" class="img-responsive" /></div>
+							<div class="swiper-slide"><img src="__PUBLIC__/index/img/banner.jpg" class="img-responsive" /></div>
+							<div class="swiper-slide"><img src="__PUBLIC__/index/img/banner2.jpg" class="img-responsive" /></div>
+						</div>
+						<!-- Add Pagination -->
+						<div class="swiper-pagination"></div>
+						<!-- Add Arrows -->
+						<div class="swiper-button-next"></div>
+						<div class="swiper-button-prev"></div>
+					</div>
+				</banner>
+			</div>
+
+			<div class="container margin-top2 ">
+				<div class="flexStart" style="justify-content: space-around;">
+					<div class="" style="margin-bottom: 30px;">
+						<video width="610" height="" autoplay controls preload="auto" poster="" id="my-video" class="video-js">
+							<source src="../../../../public/static/douzhanshen.mp4" type="video/mp4"></source>
+							<source src="myvideo.ogv" type="video/ogg"></source>
+							<source src="myvideo.webm" type="video/webm"></source>
+							<object width="" height="" type="application/x-shockwave-flash" data="myvideo.swf">
+								<param name="movie" value="myvideo.swf" />
+								<param name="flashvars" value="autostart=true&amp;file=myvideo.swf" />
+							</object>
+							当前浏览器不支持 video直接播放，点击这里下载视频： <a href="myvideo.webm">下载视频</a>
+						</video>
+					</div>
+					<div class="jumbotron">
+						<h3>欢迎登陆页面！</h3>
+						<p>这是一个超大屏幕（Jumbotron）的实例。</p>
+						<p><a class="btn btn-primary btn-lg" role="button">
+								学习更多</a>
+						</p>
+					</div>
+					
+				</div>
+			</div>
+			
+		</main>
+		{include file="common/footer"}
+		<script src="__ROOT__/home/js/videojs7_5_5/js/video.min.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			var swiperBanner = new Swiper('banner .swiper-container', {
+				autoplay: true,
+				slidesPerView: 1,
+				spaceBetween: 30,
+				loop: true,
+				effect: 'slide',
+				fadeEffect: {
+					crossFade: true,
+				},
+				pagination: {
+					el: '.swiper-pagination',
+					clickable: true,
+				},
+				navigation: {
+					nextEl: '.swiper-button-next',
+					prevEl: '.swiper-button-prev',
+				},
+			});
+			$('banner .swiper-slide').mouseenter(function() {
+				swiperBanner.autoplay.stop();
+			})
+			$('banner .swiper-slide').mouseleave(function() {
+				swiperBanner.autoplay.start();
+			})
+			
+			//视频
+			//设置中文
+					  videojs.addLanguage('zh-CN', {
+						  "Play": "播放",
+						  "Pause": "暂停",
+						  "Current Time": "当前时间",
+						  "Duration": "时长",
+						  "Remaining Time": "剩余时间",
+						  "Stream Type": "媒体流类型",
+						  "LIVE": "直播",
+						  "Loaded": "加载完毕",
+						  "Progress": "进度",
+						  "Fullscreen": "全屏",
+						  "Non-Fullscreen": "退出全屏",
+						  "Mute": "静音",
+						  "Unmute": "取消静音",
+						  "Playback Rate": "播放速度",
+						  "Subtitles": "字幕",
+						  "subtitles off": "关闭字幕",
+						  "Captions": "内嵌字幕",
+						  "captions off": "关闭内嵌字幕",
+						  "Chapters": "节目段落",
+						  "Close Modal Dialog": "关闭弹窗",
+						  "Descriptions": "描述",
+						  "descriptions off": "关闭描述",
+						  "Audio Track": "音轨",
+						  "You aborted the media playback": "视频播放被终止",
+						  "A network error caused the media download to fail part-way.": "网络错误导致视频下载中途失败。",
+						  "The media could not be loaded, either because the server or network failed or because the format is not supported.": "视频因格式不支持或者服务器或网络的问题无法加载。",
+						  "The media playback was aborted due to a corruption problem or because the media used features your browser did not support.": "由于视频文件损坏或是该视频使用了你的浏览器不支持的功能，播放终止。",
+						  "No compatible source was found for this media.": "无法找到此视频兼容的源。",
+						  "The media is encrypted and we do not have the keys to decrypt it.": "视频已加密，无法解密。",
+						  "Play Video": "播放视频",
+						  "Close": "关闭",
+						  "Modal Window": "弹窗",
+						  "This is a modal window": "这是一个弹窗",
+						  "This modal can be closed by pressing the Escape key or activating the close button.": "可以按ESC按键或启用关闭按钮来关闭此弹窗。",
+						  ", opens captions settings dialog": ", 开启标题设置弹窗",
+						  ", opens subtitles settings dialog": ", 开启字幕设置弹窗",
+						  ", opens descriptions settings dialog": ", 开启描述设置弹窗",
+						  ", selected": ", 选择",
+						  "captions settings": "字幕设定",
+						  "Audio Player": "音频播放器",
+						  "Video Player": "视频播放器",
+						  "Replay": "重播",
+						  "Progress Bar": "进度小节",
+						  "Volume Level": "音量",
+						  "subtitles settings": "字幕设定",
+						  "descriptions settings": "描述设定",
+						  "Text": "文字",
+						  "White": "白",
+						  "Black": "黑",
+						  "Red": "红",
+						  "Green": "绿",
+						  "Blue": "蓝",
+						  "Yellow": "黄",
+						  "Magenta": "紫红",
+						  "Cyan": "青",
+						  "Background": "背景",
+						  "Window": "视窗",
+						  "Transparent": "透明",
+						  "Semi-Transparent": "半透明",
+						  "Opaque": "不透明",
+						  "Font Size": "字体尺寸",
+						  "Text Edge Style": "字体边缘样式",
+						  "None": "无",
+						  "Raised": "浮雕",
+						  "Depressed": "压低",
+						  "Uniform": "均匀",
+						  "Dropshadow": "下阴影",
+						  "Font Family": "字体库",
+						  "Proportional Sans-Serif": "比例无细体",
+						  "Monospace Sans-Serif": "单间隔无细体",
+						  "Proportional Serif": "比例细体",
+						  "Monospace Serif": "单间隔细体",
+						  "Casual": "舒适",
+						  "Script": "手写体",
+						  "Small Caps": "小型大写字体",
+						  "Reset": "重启",
+						  "restore all settings to the default values": "恢复全部设定至预设值",
+						  "Done": "完成",
+						  "Caption Settings Dialog": "字幕设定视窗",
+						  "Beginning of dialog window. Escape will cancel and close the window.": "开始对话视窗。离开会取消及关闭视窗",
+						  "End of dialog window.": "结束对话视窗"
+						});
+						var myPlayer = videojs('my-video');
+						videojs("my-video").ready(function(){
+							var myPlayer = this;
+							myPlayer.play();
+						});
+			
+		</script>
+	</body>
+</html>

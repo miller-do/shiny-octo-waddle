@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>服务案例</title>
+		<link rel="stylesheet" type="text/css" href="__ROOT__/home/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="__ROOT__/static/loaders.css.min.css"/>
+		<link rel="stylesheet" type="text/css" href="__ROOT__/home/css/style.css"/>
+		<script src="../../../../public/static/jquery-2.0.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../../public/home/js/layer/2.4/layer.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body{background-color: #eee;}
+			.loading{
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: 9;
+			}
+		</style>
+	</head>
+	<body>
+		<main class="">
+			{include file="common/header" /}
+			<div class="container">
+				<ul class="breadcrumb margin-top">
+				    <li><a href="#">Home</a></li>
+				    <li><a href="#">2013</a></li>
+				    <li class="active">十一月</li>
+				</ul>
+				<div class="row">
+					<div class="col-md-8">
+						<div class="well well-small flexBet">
+							<h2>{$artLis.title}</h2>
+							<div class="flexStart margin-top2">
+								<div class="paddingside" style="width: 6em;">
+									<img src="__ROOT__/home/img/zirsn.png" class="img-responsive">
+								</div>
+								<div class="">
+									<p class="">南台观芸秀</p>
+									<p class="">2020.05.08 22:09:59 字数 144阅读 24</p>
+								</div>
+							</div>
+						</div>
+						<div class="bg-danger margin-bot">
+							<div class="panel panel-default">
+								<div class="panel-heading"> 文章正文 </div>
+								<div class="panel-body">
+									{$artLis.content}
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading"> 精彩评论 </div>
+							<div class="panel-body">
+								<div class="flexStart margin-bot" style="align-items: flex-start;">
+									<div class="paddingside" style="width: 6em;">
+										<img src="__ROOT__/home/img/zirsn.png" class="img-responsive">
+									</div>
+									<div class="">
+										<textarea rows="3" cols="95" placeholder="写下你的评论……" style="padding: 10px;"></textarea>
+									</div>
+								</div>
+								<div class="">
+									<div class="paddingside margin-bot" style="border-left: 3px solid #D43F3A;">
+										全部评论
+									</div>
+									<ul class="list-unstyled">
+										<li class="paddinside">
+											<div class="tit flexStart" style="align-items: flex-start;">
+												<div class="paddingside" style="width: 6em;">
+													<img src="__ROOT__/home/img/zirsn.png" class="img-responsive">
+												</div>
+												<div class="">
+													<div class="">
+														<p>南台观芸秀</p>
+														<p class="text-muted"><span>2楼</span> 2019.09.24 14:29</p>
+													</div>
+													<div class="">
+														<p>你只说了前端部分，后端配置呢</p>
+														<div>
+															<a href="" class="text-muted">赞</a>
+															<a href="" class="text-muted">回复</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-info margin-bot">
+							<div class="panel-heading"> 推荐阅读 </div>
+							<div class="panel-body">
+								<ul>
+									<li><a href="">反对共和时代符合双方根据官方</a></li>
+									<li><a href="">反对共和时代符合双方根据官方</a></li>
+									<li><a href="">反对共和时代符合双方根据官方</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="panel panel-info">
+							<div class="panel-heading"> 推荐阅读 </div>
+							<div class="panel-body">
+								<ul>
+									<li><a href="">反对共和时代符合双方根据官方</a></li>
+									<li><a href="">反对共和时代符合双方根据官方</a></li>
+									<li><a href="">反对共和时代符合双方根据官方</a></li>
+									<li><a href="">反对共和时代符合双方根据官方</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+			{include file="common/footer" /}
+		</main>
+		<script type="text/javascript">
+			/* var loading=document.getElementsByClassName('loading');
+			document.onreadystatechange=function() {
+				if (document.readyState=="complete") {
+					$(".loading").fadeOut();
+				}
+			} */
+		</script>
+	</body>
+</html>

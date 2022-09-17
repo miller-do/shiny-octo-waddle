@@ -1,0 +1,66 @@
+<!-- <div class="loading">加载中……</div> -->
+<header class="navbar-inverse clearfix fc">
+	<div class="col-md-1 col-sm-2 col-xs-2 text-right"><a href="{:url('index/index')}"><img src="__PUBLIC__/index/img/zirsn.png" class="img-responsive"></a></div>
+	<ul class="nav-bar list-unstyled list-inline col-md-7 col-sm-8 col-xs-7 margin0">
+		<li><a href="{:url('index/index')}">首页</a></li>
+		{voList name="cateList" id="cates"}
+			<li 
+			{eq name="$Request.param.cate_id" value="$cates.id"}
+			class="active"
+			{/eq}
+			><a href="{:url($cates.url,['cate_id'=>$cates.id])}">{$cates.catename}</a></li>
+		{/voList}
+		<!--
+			实现导航栏的点击自动高亮
+			https://www.php.cn/blog/detail/4318.html
+			参数一 为跳转 到默认控制器下
+			参数二 为当前栏目ID参数，该参数 不是get 与post,模板与后台都可获得该参数
+		 -->
+	</ul>
+	<div class="text-right col-md-5 col-sm-4 col-xs-5 text-warning">
+		<ul class="margin0 list-inline list-unstyled">
+			{php}$member=session('member');{/php}
+			{if condition="!empty($member)"}
+			<li>{$member.account}欢迎登陆xx系统</li>
+			<li><a href="{:url('user/User_center')}"><img src="__PUBLIC__/index/img/portrai.jpg" class="img-circle" style="width: 2em;" ></a></li>
+			<li><a href="{:url('common/loginOut')}">退出登陆</a></li>
+			<li><a target="_blank" href="{:url('admin/index/index')}">进入后台</a></li>
+			{else /}
+			<li><a href="{:url('common/login')}">登陆</a></li>
+			<li><a href="{:url('common/register')}">注册</a></li>
+			{/if}
+		</ul>
+	</div>
+</header>
+<div class="container">
+	<form action="{:url('search/index')}" class="text-right form-horizontal" method="get" autocomplete="off">
+		<div id="" class="input-group" style="display: flex;justify-content: flex-end;margin: 15px 0;">
+			<input type="search" class="form-control" style="display: inline-block;width: auto;"
+			 name="keywords" required="" placeholder="请输入关键字或关键词" x-webkit-speech="" x-webkit-grammar="builtin:search" lang="zh-CN">
+			<input type="submit" value="搜索"/>
+		</div>
+	</form>
+</div>
+<!-- 
+ p($request->domain());     // 获取当前域名 https://baidu.com
+ p($request->baseFile());   // 获取当前入口文件 /jdcrm/public/index.php
+ p($request->url());        // 获取当前URL地址 /jdcrm/public/a/test.html
+ p($request->url(true));    // 包含域名的完整URL地址  https://baidu.com/jdcrm/public/a/test.html
+ p($request->baseUrl());    // 获取当前URL地址 不含QUERY_STRING  jdcrm/public/a/test.html
+ p($request->pathinfo());   // 获取URL地址中的PATH_INFO信息  a/test.html
+ p($request->path());       // 获取URL地址中的PATH_INFO信息 不含后缀 a/test
+ p($request->ext());        // 获取URL地址中的后缀信息   html
+ 
+ p($request->module());     // 获取当前分组名称   admin
+ p($request->controller()); // 获取当前控制器名称  Test
+ p($request->action());     // 获取当前操作名称   index
+ 
+ p($request->method());     // 获取请求方法    GET
+ p($request->type());       // 获取资源类型    xml
+ p($request->ip());         // 获取访问ip地址  117.151.82.29
+ p($request->isAjax());     // 判断 是否是AJax请求 无输出
+ p($request->isPost());     // 判断 是否是post请求  无输出
+ 
+ p($request->route());      // 获取路由信息   []
+ p($request->dispatch());  // 获取调度信息 array([type] => module,[module] =>[[0] => admin,[1] => test,[2] => index],[convert] =>])
+-->

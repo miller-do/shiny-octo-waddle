@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/index/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/index/css/style.css"/>
+		<script src="__PUBLIC__/index/js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/index/js/layer/2.4/layer.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+		
+	<body class="bg-danger ">
+		{include file="common/header"/}
+		<main class="bg-success fc">
+			<div class="panel panel-primary margin-top2 margin-bot2" style="width: 400px;">
+				<form class="">
+					<fieldset id="" class="margin-top margin-bot">
+						<legend class="text-center text-primary fonwei">登陆</legend>
+						<div class="form-group clearfix fc">
+							<label for="account" class="col-md-3 text-right">账&ensp;&ensp;号</label>
+							<div class="col-md-9"><input type="text" class="form-control" name="account" id="account" value="" /></div>
+						</div>
+						<div class="form-group clearfix fc">
+							<label for="password" class="col-md-3 text-right">密&ensp;&ensp;码</label>
+							<div class="col-md-9"><input type="password" class="form-control" name="password" id="password" value="" /></div>
+						</div>
+						<div class="form-group clearfix fc">
+							<label for="captcha" class="col-md-3 text-right">验证码</label>
+							<div class="col-md-5"><input type="text" class="form-control" name="captcha" id="captcha" value="" /></div>
+							<div class="col-md-4"><a href="javascript:void(0)"><img src="{:captcha_src()}" class="captchaImg img-responsive" onclick="this.src='{:captcha_src()}?'+Math.random();" alt="验证码加载中" id="captchaImg"/></a></div>
+						</div>
+						<div class="form-group text-right paddingside">
+							<span class="">没有账号？</span><a href="{:url('common/register')}">去注册</a>
+						</div>
+					</fieldset>
+				</form>
+				<div class="text-center margin-bot2 paddingside"><input type="submit" class="btn btn-primary form-control" id="login" value="登陆"/></div>
+			</div>
+		</main>
+		{include file="common/footer"/}
+		<script type="text/javascript">
+			$("#login").click(function() {
+				// var username = $("#username").val();
+				// var password = $("#password").val();
+				loginform();
+			})
+			$('#captcha').bind('keypress',function(event){
+				if(event.keyCode == "13"){
+					loginform();
+				}
+			});
+			function loginform() {
+				$.ajax({
+					url:"{:url('index/common/login')}",
+					type:"post",
+					data:$('form').serialize(),
+					// data:{'username':username,'password':password},
+					dataType:"json",
+					success:function(data) {
+						console.log(data)
+						if (data.code==1) {
+							layer.msg(data.msg,{
+								icon:1,
+								function(){}
+							})
+							location.href=data.url;
+						} else{
+							layer.msg(data.msg,{
+								icon:2,
+								function(){}
+							})
+							// debugger;
+							var captchaImg=$(".captchaImg").attr("src");
+							$(".captchaImg").attr("src",captchaImg+Math.random());
+						}
+						// location.href="{:url('home/common/login')}"
+					}
+				})
+			}
+		</script>
+		<script src="../../../../public/home/js/common.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>
