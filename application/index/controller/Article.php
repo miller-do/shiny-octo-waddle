@@ -13,9 +13,9 @@ Class Article extends Base{
 	}
 	public function detail(){
 		$arid=input('id');
-		$articleres=db('news_article')->find($arid);
-		$where = '`topic_id`="' . $arid . '"';
-		$member =db('member');
+		$articleres=db('article')->find($arid);
+		// $where = '`topic_id`="' . $arid . '"';
+		$member =db('admin');
 		$comment =db('comment');
 		//此方法不可取
 		// $commentres=\think\Db::name('comment')->where($where)-> select();
@@ -25,9 +25,10 @@ Class Article extends Base{
 		// 	$commentres[$key]['nickname']=$user['nickname'];
 		// }
 		//关联查询(推荐使用)
-		$commentres=$comment->alias('a')->where($where)->join('member b',' b.id = a.from_uid')->order('comment_time', 'desc')-> select();
+		// $commentres=$comment->alias('a')->where($where)->join('member b',' b.id = a.from_uid')->order('create_time', 'desc')-> select();
+		$commentres=$comment->order('create_time', 'desc')-> select();
 		// echo '<pre>';
-		// print_r($commentres);
+		// print_r($articleres);
 		// die;
 		$this->assign('articleres',$articleres);
 		$this->assign('commentres',$commentres);

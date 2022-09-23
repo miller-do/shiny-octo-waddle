@@ -3,11 +3,11 @@
 	<head>
 		<meta charset="utf-8">
 		<title>{$articleres.title}—文章详情</title>
-		<link rel="stylesheet" type="text/css" href="__ROOT__/home/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/index/css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="__ROOT__/static/loaders.css.min.css"/>
-		<link rel="stylesheet" type="text/css" href="__ROOT__/home/css/style.css"/>
-		<script src="../../../../public/static/jquery-2.0.3.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../../../../public/home/js/layer/2.4/layer.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/index/css/style.css"/>
+		<script src="__PUBLIC__/index/js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<!-- <script src="__PUBLIC__/index/js/layer/2.4/layer.js" type="text/javascript" charset="utf-8"></script> -->
 		<style type="text/css">
 			body{background-color: #eee;}
 			.loading{
@@ -17,6 +17,9 @@
 				left: 0;
 				top: 0;
 				z-index: 9;
+			}
+			.panel-body img,.panel-body video{
+				max-width: 100%;
 			}
 		</style>
 	</head>
@@ -45,9 +48,9 @@
 						</div>
 						<div class="bg-danger margin-bot">
 							<div class="panel panel-default">
-								<div class="panel-heading"> 文章正文 </div>
+								<div class="panel-heading"> 正文 </div>
 								<div class="panel-body">
-									{$articleres.content}
+									{$articleres.content |raw|htmlspecialchars_decode}
 								</div>
 							</div>
 						</div>
@@ -56,7 +59,7 @@
 							<div class="panel-body">
 								<form action="{:url('home/comment/index')}" method="post" enctype="multipart/form-data" >
 									<input type="hidden" name="article_id" id="" value="{$articleres.id}" />
-									<input type="hidden" name="article_cateid" id="" value="{$articleres.cateid}" />
+									<input type="hidden" name="article_cateid" id="" value="{$articleres.cate_id}" />
 									<div class="flexStart" style="align-items: flex-start;">
 										<div class="paddingside" style="width: 10%;">
 											<img src="__ROOT__/home/img/zirsn.png" class="img-responsive">
@@ -90,7 +93,7 @@
 															<div class="text-muted"><span>{$vo.comment_time}</span> </div>
 														</div>
 														<div class="">
-															<p> {$vo.content}</p>
+															<div> {$vo.content}</div>
 															<div>
 																<a href="" class="text-muted">{$vo.like_count}赞</a>
 																<a href="" class="text-muted">回复</a>

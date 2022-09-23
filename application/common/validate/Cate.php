@@ -14,6 +14,7 @@ class Cate extends Validate
 	//校验增加场景
     public function sceneAdd()
     {
+		//only 场景需要验证的字段
 		return $this->only(['catename','parentId','url','is_hide','sort']);
     }
 }

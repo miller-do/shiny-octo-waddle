@@ -56,6 +56,7 @@ class Cate extends Controller{
 			'is_hide'=>$isHide,
 			'sort'=>input('post.sort')
 		];
+		// allowField 过滤post数组中的非数据表字段数据
 		$result=model('Cate')->allowField(true)->cateAdd($data);
 		
 		if($result==1){

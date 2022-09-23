@@ -1,8 +1,8 @@
 <?php
-namespace app\home\controller;
+namespace app\index\controller;
 use think\Controller;
-use app\home\model\Server as ServerModel;
-Class Server extends IndexBase{
+// use app\index\model\Server as ServerModel;
+Class Serve extends Base{
 	public function index(){
 		//方式1：在创建了与数据库表名对应的模型后即可调用模型的方法进行CURD
 		// $list=ServerModel::paginate(3);
@@ -11,10 +11,10 @@ Class Server extends IndexBase{
 		print_r($list); */
 		
 		//方式2:
-		$lis= \think\Db::name('server')->alias('a')->paginate(5);
+		$list= \think\Db::name('article')->alias('a')->paginate(5);
 		// var_dump($lis);
 		// die;
-		$this->assign('list',$lis);
+		$this->assign('list',$list);
 		return $this->fetch();
 	}
 	public function detail(){

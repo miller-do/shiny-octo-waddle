@@ -3,11 +3,11 @@
 	<head>
 		<meta charset="utf-8">
 		<title>服务案例</title>
-		<link rel="stylesheet" type="text/css" href="/tpblog/public/home/css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="/tpblog/public/static/loaders.css.min.css"/>
-		<link rel="stylesheet" type="text/css" href="/tpblog/public/home/css/style.css"/>
-		<script src="/tpblog/public/home/js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
-		<script src="/tpblog/public/home/js/layer/2.4/layer.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/index/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="/tpblog/public/static/loaders.css.min.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/index/css/style.css" />
+		<script src="__PUBLIC__/index/js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/index/js/layer/2.4/layer.js" type="text/javascript" charset="utf-8"></script>
 		<style type="text/css">
 			.loading{
 				width: 100%;
@@ -32,8 +32,8 @@
 						<li class="col-md-2">
 							<div class="thumbnail">
 								<a href="<?php echo url('server/detail',array('serid'=>$vo['id'])); ?>">
-									<?php if($vo['pic'] != ''): ?>
-									<img src="/tpblog/public/home/img/yz630.jpg" class="img-responsive">
+									<?php if($vo['thumb'] != ''): ?>
+									<img src="__PUBLIC__/index/img/yz630.jpg" class="img-responsive">
 									<?php else: ?>
 									<!-- 暂无缩略图 -->
 									<img src="/tpblog/public/static/img/noneImg.jpg" class="img-responsive">
@@ -78,19 +78,19 @@
 					<ul class="list-unstyled panel-body">
 						<li class="col-md-4">
 							<div class="thumbnail">
-								<a href=""><img src="/tpblog/public/home/img/yz630.jpg" class="img-responsive"></a>
+								<a href=""><img src="__PUBLIC__/index/img/yz630.jpg" class="img-responsive"></a>
 								<p class="text-center"><a href="">案例1</a></p>
 							</div>
 						</li>
 						<li class="col-md-4">
 							<div class="thumbnail">
-								<a href=""><img src="/tpblog/public/home/img/yz630.jpg" class="img-responsive"></a>
+								<a href=""><img src="__PUBLIC__/index/img/yz630.jpg" class="img-responsive"></a>
 								<p class="text-center"><a href="">案例1</a></p>
 							</div>
 						</li>
 						<li class="col-md-4">
 							<div class="thumbnail">
-								<a href=""><img src="/tpblog/public/home/img/yz630.jpg" class="img-responsive"></a>
+								<a href=""><img src="__PUBLIC__/index/img/yz630.jpg" class="img-responsive"></a>
 								<p class="text-center"><a href="">案例1</a></p>
 							</div>
 						</li>

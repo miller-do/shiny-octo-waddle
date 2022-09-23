@@ -5,7 +5,7 @@ use think\model\concern\SoftDelete;
 //注意引入的类名必须是大写，从而说明对象的特征
 // use think\Db;
 
-class Aticle extends Model
+class Article extends Model
 {
 	use SoftDelete;
 	
@@ -13,9 +13,9 @@ class Aticle extends Model
 	protected $defoultSoftDelete = 0;
 	
 	//添加栏目
-    public function cateAdd($data)
+    public function articleAdd($data)
     {
-		$validate=new \app\common\validate\Cate();
+		$validate=new \app\common\validate\Article();
 		if(!$validate->scene('add')->check($data)){
 			return $validate->getError();
 		}
@@ -27,7 +27,7 @@ class Aticle extends Model
 		if($result){
 			return 1;
 		}else{
-			return '栏目添加失败';
+			return '文章添加失败';
 		}
     }
 }

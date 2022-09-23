@@ -1,7 +1,7 @@
 <?php
-namespace app\home\Controller;
+namespace app\index\controller;
 use think\Controller;
-Class AboutUs extends IndexBase{
+Class About extends Base{
 	public function index(){
 		return $this->fetch();
 	}

@@ -3,11 +3,11 @@
 	<head>
 		<meta charset="utf-8">
 		<title>最新文章</title>
-		<link rel="stylesheet" type="text/css" href="/tpblog/public/home/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/index/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="/tpblog/public/static/loaders.css.min.css" />
-		<link rel="stylesheet" type="text/css" href="/tpblog/public/home/css/style.css" />
-		<script src="/tpblog/public/home/js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
-		<script src="/tpblog/public/home/js/layer/2.4/layer.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/index/css/style.css" />
+		<script src="__PUBLIC__/index/js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/index/js/layer/2.4/layer.js" type="text/javascript" charset="utf-8"></script>
 		<style type="text/css">
 			.loading {
 				width: 100%;
@@ -53,8 +53,8 @@
 										<div class="media-left">
 											<a href="{:url('article/detail',array('id'=>$vo['id']))}">
 												<span style="display: inline-block;width: 150px;height: 100px;">
-													{if condition="$vo['thunmb'] neq ''"}
-													<img src="__ROOT__/{$vo.thunmb}" class="media-object img-responsive">
+													{if condition="$vo['thumb'] neq ''"}
+													<img src="{$Request.domain}/tp-yycms/uploads/{$vo.thumb}" class="media-object img-responsive">
 													{else /}
 													<img src="/tpblog/public/static/img/noneImg.jpg" class="media-object img-responsive">
 													{/if}

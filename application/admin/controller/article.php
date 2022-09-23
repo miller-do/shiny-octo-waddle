@@ -3,8 +3,27 @@ namespace app\admin\controller;
 use think\Db;
 use think\Controller;
 use Token;
+use think\facade\Request;
 
 class Article extends Controller{
+	
+	public function upload(){
+	    // 获取表单上传文件 例如上传了001.jpg
+	    // $file = request()->file('image');
+		$file = $this->request->file('file');
+		dump(input('post.'));
+		die;
+	    // 移动到框架应用根目录/uploads/ 目录下
+	    $info = $file->move( '../uploads');
+	    if($info){
+	        // 成功上传后 获取上传信息
+			$imgUrl = $info->getSaveName();
+			return $imgUrl;
+	    }else{
+	        // 上传失败获取错误信息
+	        return $file->getError();
+	    }
+	}
 	
 	public function getlist(){
 		$data=[
@@ -12,44 +31,81 @@ class Article extends Controller{
 			'pageSize'=>input('post.pageSize'),
 			'total'=>input('post.total')
 		];
-		$cates=model('Cate')->order('sort', 'asc')->page($data['pageIndex'],$data['pageSize'])->select();
-		// if($result){
-		// 	return json(['code'=>200,'data'=>$result,'msg'=>'栏目修改成功']);
-		// }else{
-		// 	return json(['code'=>500,'data'=>$result,'msg'=>'栏目修改失败']);
+		$dataRes=model('article')->order('id', 'asc')->page($data['pageIndex'],$data['pageSize'])->select();
+		$domain=Request::domain(true);//env('ROOT_PATH');
+		//$_SERVER['SERVER_NAME']?"http://".$_SERVER['SERVER_NAME']."/tp-yycms":"http://".$_SERVER['HTTP_HOST'];
+		// dump($domain);
+		// foreach ($dataRes as $value){
+		// 	$value['thumb']=$domain.$value['thumb'];
 		// }
+		// dump($dataRes);
+		// die;
+		$dataReturn = [
+			'total'     =>model('article')->count(),
+			'cur'       => $data['pageIndex'],
+			'size'      => $data['pageSize'],
+			'list'      => $dataRes
+		];
+		if($dataRes){
+			return json(['code'=>200,'data'=>$dataReturn,'msg'=>'列表获取成功']);
+		}else{
+			return json(['code'=>500,'data'=>$dataRes,'msg'=>'列表获取失败']);
+		}
 	}
 	
 	public function edit(){
 		//先查询后编辑
 		$data=input('post.');
-		$data['is_hide']=input('post.is_hide')?'1':'0';
-		// dump($data);die;
-		$cateInfo=model('Cate')->find($data['id']);
-		$result=$cateInfo->save($data,['id' => $data['id']]);
+		$file = $this->request->file('file');
+		// 移动到框架应用根目录/uploads/ 目录下
+		if($file){
+			$info = $file->move( '../uploads');
+			if($info){
+			    // 成功上传后 获取上传信息
+				$data['thumb'] = $info->getSaveName();
+				// http://localhost/tp-yycms/uploads/20220921/93c04acb867db32bdbc4da7756152b7b.jpg
+			}else{
+			    // 上传失败获取错误信息
+			    return $file->getError();
+			}
+		}
+		
+		$cateInfo=model('article')->find($data['id']);
+		$result=$cateInfo->allowField(true)->save($data,['id' => $data['id']]);
 		if($result){
-			return json(['code'=>200,'data'=>$result,'msg'=>'栏目修改成功']);
+			return json(['code'=>200,'data'=>$result,'msg'=>'文章修改成功']);
 		}else{
-			return json(['code'=>500,'data'=>$result,'msg'=>'栏目修改失败']);
+			return json(['code'=>500,'data'=>$result,'msg'=>'文章修改失败']);
 		}
 	}
 	
 	public function add(){
-		
-		$isHide=is_bool(input('post.is_hide'))?'1':'0';
+		// dump(input('post.'));
+		$file = $this->request->file('file');
+		// dump($file);
+		// die;
 		$data=[
-			'catename'=>input('post.catename'),
-			'pid'=>input('post.pid'),
-			'url'=>input('post.url'),
-			'is_hide'=>$isHide,
-			'sort'=>input('post.sort')
+			'title'=>input('post.title'),
+			'cate'=>input('post.cate'),
+			'is_top'=>input('post.is_top'),
+			'is_open'=>input('post.is_open'),
+			'content'=>input('post.content')
 		];
-		$result=model('Cate')->allowField(true)->cateAdd($data);
+		// 移动到框架应用根目录/uploads/ 目录下
+		$info = $file->move( '../uploads');
+		if($info){
+		    // 成功上传后 获取上传信息
+			$data['thumb'] = $info->getSaveName();
+		}else{
+		    // 上传失败获取错误信息
+		    return $file->getError();
+		}
+		$result=model('article')->allowField(true)->articleAdd($data);
 		
 		if($result==1){
-			return json(['code'=>200,'data'=>$result,'msg'=>'栏目添加成功']);
+			return json(['code'=>200,'data'=>$result,'msg'=>'文章添加成功']);
 		}else{
-			return json(['code'=>500,'data'=>$result,'msg'=>'栏目添加失败']);
+			return json(['code'=>500,'data'=>$result,'msg'=>'文章添加失败']);
 		}
 		
 	}
@@ -61,14 +117,14 @@ class Article extends Controller{
 		//先查询后删除
 		if(count($data)>1){
 			//批量删除
-			$cateInfo=model('Cate');
+			$cateInfo=model('article');
 			$result=$cateInfo::destroy($data);
 		}else{
 			//单个删除
-			$cateInfo=model('Cate')->find($data);
+			$cateInfo=model('article')->find($data);
 			$result=$cateInfo->delete();
 		}
-		$total=model('Cate')->count();
+		$total=model('article')->count();
 		$res=[
 			'total'=>$total
 		];
