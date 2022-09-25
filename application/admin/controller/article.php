@@ -25,21 +25,35 @@ class Article extends Controller{
 	    }
 	}
 	
+	//查询分类列表
+	public function getcates(){
+		$cateInfo=model('cate')->order('id', 'asc')->select();
+		foreach ($cateInfo as $key => $value){
+			$dataRes[$key]['value']=$value['id'];
+			$dataRes[$key]['label']=$value['catename'];
+		}
+		
+		if($dataRes){
+			return json(['code'=>200,'data'=>$dataRes,'msg'=>'列表获取成功']);
+		}else{
+			return json(['code'=>500,'data'=>$dataRes,'msg'=>'列表获取失败']);
+		}
+	}
+	
 	public function getlist(){
 		$data=[
 			'pageIndex'=>input('post.pageIndex'),
 			'pageSize'=>input('post.pageSize'),
 			'total'=>input('post.total')
 		];
-		$dataRes=model('article')->order('id', 'asc')->page($data['pageIndex'],$data['pageSize'])->select();
-		$domain=Request::domain(true);//env('ROOT_PATH');
-		//$_SERVER['SERVER_NAME']?"http://".$_SERVER['SERVER_NAME']."/tp-yycms":"http://".$_SERVER['HTTP_HOST'];
-		// dump($domain);
-		// foreach ($dataRes as $value){
-		// 	$value['thumb']=$domain.$value['thumb'];
-		// }
+		//with('cate,cate.catename') 第一个是模型方法、第二个表示要关联的模型方法
+		$dataRes=model('article')->with('cate')->order('id', 'desc')->page($data['pageIndex'],$data['pageSize'])->select();
 		// dump($dataRes);
 		// die;
+		$domain=Request::domain(true);//env('ROOT_PATH');
+		foreach ($dataRes as $value){
+			$value['thumb']=$domain.'\/upload/'.$value['thumb'];
+		}
 		$dataReturn = [
 			'total'     =>model('article')->count(),
 			'cur'       => $data['pageIndex'],
@@ -59,7 +73,8 @@ class Article extends Controller{
 		$file = $this->request->file('file');
 		// 移动到框架应用根目录/uploads/ 目录下
 		if($file){
-			$info = $file->move( '../uploads');
+			$path=env('ROOT_PATH')."public/upload";
+			$info = $file->move($path);//'../uploads'
 			if($info){
 			    // 成功上传后 获取上传信息
 				$data['thumb'] = $info->getSaveName();
@@ -81,7 +96,11 @@ class Article extends Controller{
 	
 	public function add(){
 		// dump(input('post.'));
-		$file = $this->request->file('file');
+		try{
+			$file = $this->request->file('file');
+		}catch(\Throwable $err){
+			$this->error('请上传封面图');
+		}
 		// dump($file);
 		// die;
 		$data=[
@@ -92,7 +111,8 @@ class Article extends Controller{
 			'content'=>input('post.content')
 		];
 		// 移动到框架应用根目录/uploads/ 目录下
-		$info = $file->move( '../uploads');
+		$path=env('ROOT_PATH')."public/upload";
+		$info = $file->move($path);//'../uploads'
 		if($info){
 		    // 成功上传后 获取上传信息
 			$data['thumb'] = $info->getSaveName();

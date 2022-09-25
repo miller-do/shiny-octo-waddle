@@ -6,15 +6,19 @@ Class Article extends Base{
 		// $list=model('article')->select()->order('id', 'desc');
 		$cate=input('cate_id');
 		$cateres= \think\Db::name('cate')->find($cate);
-		$lis= \think\Db::name('article')->order('id', 'desc')->paginate(10);
+		
+		$where = '`is_open`=1';
+		$lis= \think\Db::name('article')->where($where)->order('id', 'desc')->paginate(10);
 		$this->assign('list',$lis);
 		$this->assign('cateres',$cateres);
 		return $this->fetch();
 	}
 	public function detail(){
-		$arid=input('id');
-		$articleres=db('article')->find($arid);
+		// $arid=input('id');
+		// $articleres=db('article')->find($arid);
 		// $where = '`topic_id`="' . $arid . '"';
+		$articleres=model('article')->find(input('id'));
+		$articleres->setInc('clickcount');
 		$member =db('admin');
 		$comment =db('comment');
 		//此方法不可取
@@ -24,6 +28,7 @@ Class Article extends Base{
 		// 	$user=\think\Db::name('member')->where($where)-> find();
 		// 	$commentres[$key]['nickname']=$user['nickname'];
 		// }
+		
 		//关联查询(推荐使用)
 		// $commentres=$comment->alias('a')->where($where)->join('member b',' b.id = a.from_uid')->order('create_time', 'desc')-> select();
 		$commentres=$comment->order('create_time', 'desc')-> select();

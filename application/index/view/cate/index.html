@@ -3,11 +3,11 @@
 	<head>
 		<meta charset="utf-8">
 		<title>资讯中心</title>
-		<link rel="stylesheet" type="text/css" href="/tpblog/public/home/css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="/tpblog/public/static/loaders.css.min.css"/>
-		<link rel="stylesheet" type="text/css" href="/tpblog/public/home/css/style.css"/>
-		<script src="/tpblog/public/home/js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
-		<script src="/tpblog/public/home/js/layer/2.4/layer.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/index/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/index/static/loaders.css.min.css"/>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/index/css/style.css"/>
+		<script src="/__PUBLIC__/index/js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/index/js/layer/2.4/layer.js" type="text/javascript" charset="utf-8"></script>
 		<style type="text/css">
 			.loading{
 				width: 100%;
@@ -35,7 +35,7 @@
 		</div> -->
 		{include file="common/header"/}
 		<div class="container">
-			<a href="{:url('index/index')}">主页</a> > <a href="{:url('cate/index',array('cate_id'=>$cateres['id']))}">{$cateres.title}</a>
+			<a href="{:url('index/index')}">主页</a> > <a href="{:url('cate/index',array('cate_id'=>$cateres['id']))}">{$cateres.catename}</a>
 		</div>
 		<main class="margin-top">
 			<div class="container">
@@ -52,10 +52,10 @@
 										<div class="media-left">
 											<a href="{:url('article/detail',array('id'=>$vo['id']))}">
 												<span style="display: inline-block;width: 150px;height: 100px;">
-													{if condition="$vo['thunmb'] neq ''"}
-													<img src="__ROOT__/{$vo.thunmb}" class="media-object img-responsive">
+													{if condition="$vo['thumb'] neq ''"}
+													<img src="/upload/{$vo.thumb}" class="media-object img-responsive">
 													{else /}
-													<img src="/tpblog/public/static/img/noneImg.jpg" class="media-object img-responsive">
+													<img src="/public/static/img/noneImg.jpg" class="media-object img-responsive">
 													{/if}
 												</span>
 											</a>
@@ -68,8 +68,8 @@
 											-webkit-box-orient: vertical;    
 											-webkit-line-clamp: 3;    
 											overflow: hidden;">
-												{if condition="$vo['discription'] neq ''"}
-												{$vo.discription}
+												{if condition="$vo['desc'] neq ''"}
+												{$vo.desc}
 												{else /}
 												暂无概述
 												{/if}
@@ -79,7 +79,7 @@
 													<span>tags:</span>
 													<?php
 														//将字符串解析为数组
-														$arr=explode(',',$vo['keywords']);
+														$arr=explode(',',$vo['tags']);
 														foreach($arr as $k=>$v){
 															echo "<a href='/tpblog/public/index.php/home/tags/index/tags/$v' style='font-size: 12px;'>$v</a>";
 															echo " ";

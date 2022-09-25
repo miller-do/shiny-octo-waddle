@@ -38,11 +38,16 @@
 							<h2>{$articleres.title}</h2>
 							<div class="flexStart margin-top2">
 								<div class="paddingside" style="width: 6em;">
-									<img src="__ROOT__/home/img/zirsn.png" class="img-responsive">
+									<img src="__PUBLIC__/index/img/zirsn.png" class="img-responsive">
 								</div>
 								<div class="">
 									<p class="">南台观芸秀</p>
-									<p class="">2020.05.08 22:09:59 字数 144阅读 24</p>
+									<!-- 管道符的符号：| -->
+									<p class="">
+										<span class="text-muted">{$articleres.create_time|date='Y-m-d H:i'}</span> 
+										<span class="text-muted">字数:144 </span></p>
+										<span class="text-muted">阅读:{$articleres.clickcount}</span>
+									</p>
 								</div>
 							</div>
 						</div>
@@ -59,10 +64,10 @@
 							<div class="panel-body">
 								<form action="{:url('home/comment/index')}" method="post" enctype="multipart/form-data" >
 									<input type="hidden" name="article_id" id="" value="{$articleres.id}" />
-									<input type="hidden" name="article_cateid" id="" value="{$articleres.cate_id}" />
+									<input type="hidden" name="article_cateid" id="" value="{$articleres.cate}" />
 									<div class="flexStart" style="align-items: flex-start;">
 										<div class="paddingside" style="width: 10%;">
-											<img src="__ROOT__/home/img/zirsn.png" class="img-responsive">
+											<img src="__PUBLIC__/index/img/zirsn.png" class="img-responsive">
 										</div>
 										<div class="" style="width: 90%;">
 											<textarea rows="3" name="comment" placeholder="写下你的评论……" style="width: 100%; padding: 5px;resize: none;"></textarea>
