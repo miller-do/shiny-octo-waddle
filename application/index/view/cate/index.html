@@ -34,17 +34,21 @@
 			</div>
 		</div> -->
 		{include file="common/header"/}
-		<div class="container">
-			<a href="{:url('index/index')}">主页</a> > <a href="{:url('cate/index',array('cate_id'=>$cateres['id']))}">{$cateres.catename}</a>
-		</div>
 		<main class="margin-top">
+			<div class="container">
+				<ol class="breadcrumb">
+				  <li><a href="{:url('index/index')}">主页</a></li>
+				  <li><a href="{:url('cate/index',array('cate_id'=>$cateres['id']))}">{$cateres.catename}</a></li>
+				</ol>
+			</div>
+			
 			<div class="container">
 				<div class="row">
 					<div class="col-md-9">
-						<div class="panel panel-info">
-							<div class="fonwei panel-heading">
+						<div class="panel panel-default">
+							<!-- <div class="fonwei panel-heading">
 								<h5 class="text-danger">最新资讯</h5>
-							</div>
+							</div> -->
 							<ul class="list-unstyled panel-body list-group">
 								{foreach name="list" item="vo" }
 								<li class="list-group-item">
@@ -90,10 +94,10 @@
 													<a href="">宋词</a> -->
 												</div>
 												<div class="info text-right" style="font-size: 12px;">
-													<span>更新时间：<i class="text-muted" style="font-style: unset !important;">{$vo.update_time}</i> </span>&ensp;
-													<span>分类：</span>&nbsp;
+													<span>更新时间：<i class="text-muted" style="font-style: unset !important;">{$vo.update_time|date='Y-m-d H:i'}</i> </span>&ensp;
+													<span>分类：{$vo.cate}</span>&nbsp;
 													<span>评论：</span>&nbsp;
-													<span>浏览：</span>&nbsp;
+													<span>浏览：{$vo.clickcount}</span>&nbsp;
 													<span><a href="{:url('article/detail',array('id'=>$vo['id']))}">阅读全文></a></span>
 												</div>
 											</div>
@@ -117,7 +121,7 @@
 					<div class="col-md-3">
 						<div class="panel panel-info">
 							<div class="fonwei panel-heading">
-								<h5 class="text-danger">最热资讯</h5>
+								<h5 class="text-danger">推荐阅读</h5>
 							</div>
 							<div class="panel-body">
 								<p class="text-left flexBet"><span class="label label-info">Info</span><a href="">对你说古风短句 美到哭五个...</a></p>

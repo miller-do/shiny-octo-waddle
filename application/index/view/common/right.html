@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+	<div class="fonwei panel-heading">
+		<h5 class="text-muted">推荐阅读</h5>
+	</div>
+	<div class="panel-body">
+		<ul class="right-list">
+			{volist name="artop" id="vo"}
+				<li class="text-left"><span class="label label-warning">荐</span><a href="{:url('article/detail',array('id'=>$vo['id']))}">{$vo.title}</a></li>
+			{/volist}
+		</ul>
+	</div>
+</div>
+<div class="panel panel-default">
+	<div class="fonwei panel-heading">
+		<h5 class="text-muted">最热资讯</h5>
+	</div>
+	<div class="panel-body">
+		<ul class="right-list">
+			{volist name="arHot" id="vo"}
+				<li class="text-left"><span class="label label-danger">Hot</span><a href="{:url('article/detail',array('id'=>$vo['id']))}">{$vo.title}</a></li>
+			{/volist}
+		<ul>
+	</div>
+</div>

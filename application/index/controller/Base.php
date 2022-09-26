@@ -12,9 +12,25 @@ Class Base extends Controller{
 		$this->getTopMenu();//获取后台顶部菜单
 	}
 	public function getTopMenu(){
-		$where['pid']=array('eq',0);
-		$toMenu=Db("cate")->where($where)->limit(10)->order('sort', 'asc')->select();//$toMenu页面中的下拉菜单模板名
-		// dump($toMenu);
-		$this->assign('cateList',$toMenu);//把顶部菜单往模板传送，并与循环体中的命名name的值保持一致
+		$cates=Db("cate")->where("is_hide != 1")->order('sort', 'asc')->select();
+		$menus=[];
+		foreach ($cates as $key => $cate) {
+			if($cate['pid']==0){
+				$menus[$key]=$cate;
+			}
+		}
+		
+		foreach ($menus as $k => $menu) {
+			foreach ($cates as $kk => $cate) {
+				//一级菜单的id等于菜单数据的pid
+				if($menu['id']==$cate['pid']){
+					$menus[$k]['subMenu'][$kk]=$cate;
+				}
+			}
+		}
+		// dump($menus);die;
+		//往模板传递2个变量的参数
+		//array('cateList' => $toMenu, 'subMenu' => $subMenu)
+		$this->assign('menus',$menus);//把顶部菜单往模板传送，并与循环体中的命名name的值保持一致
 	}
 }

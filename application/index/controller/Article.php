@@ -4,20 +4,23 @@ use think\Controller;
 Class Article extends Base{
 	public function index(){
 		// $list=model('article')->select()->order('id', 'desc');
-		$cate=input('cate_id');
-		$cateres= \think\Db::name('cate')->find($cate);
+		$cid=input('cate_id');
+		$cateres= \think\Db::name('cate')->find($cid);
 		
-		$where = '`is_open`=1';
+		$where = '`is_open`=1 AND `cate`='.$cid;
 		$lis= \think\Db::name('article')->where($where)->order('id', 'desc')->paginate(10);
 		$this->assign('list',$lis);
 		$this->assign('cateres',$cateres);
+		$this->rightData();
 		return $this->fetch();
 	}
+	
 	public function detail(){
-		// $arid=input('id');
-		// $articleres=db('article')->find($arid);
-		// $where = '`topic_id`="' . $arid . '"';
 		$articleres=model('article')->find(input('id'));
+		
+		$cateres=db('cate')->find($articleres['cate']);
+		$this->assign('cateres',$cateres);
+		
 		$articleres->setInc('clickcount');
 		$member =db('admin');
 		$comment =db('comment');
@@ -37,7 +40,19 @@ Class Article extends Base{
 		// die;
 		$this->assign('articleres',$articleres);
 		$this->assign('commentres',$commentres);
+		$this->rightData();
 		return $this->fetch();
 	}
+	
+	public function rightData(){
+		$where = '`is_top`=1';
+		$arTop=model('article')->where($where)->limit(6)->select();
+		$arHot=model('article')->order('clickcount', 'desc')->limit(6)->select();
+		// dump($artop);
+		// die;
+		$this->assign('artop',$arTop);
+		$this->assign('arHot',$arHot);
+	}
+	
 }
 ?>

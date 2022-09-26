@@ -1,64 +1,153 @@
-html,body{
+html,
+body {
 	height: 100%;
 }
-header{
-	/* padding: 1em 0; */
+
+header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 99;
+	width: 100%;
 }
-.logo-wrap{
+.top-menu>li{
+	position: relative;
+}
+.top-menu>li>a,.top-menu>li>span{
+	display: block;
+	color: #fff;
+    height: 75.09px;
+    line-height: 75.09px;
+	user-select: none;
+}
+.top-menu>li:hover {
+	background-color: #4f4f4f;
+}
+.top-menu>li:hover>a{
+	transition: all ease .6s;
+	color: orange;
+}
+
+ul.submenu{
+	width: 180px;
+	position: absolute;
+	left: 0;
+	top: 75.08px;
+	z-index: 999;
+	display: none;
+	background-color: rgb(107,107,107,.7);
+	padding: 0;
+	box-shadow: 0px 2px 2px #999;
+}
+
+ul.submenu>li{padding: 8px 10px;}
+ul.submenu>li>a{display: block;color: #fff;}
+ul.submenu>li:hover {background-color: #4f4f4f;}
+ul.submenu>li:hover>a{color: orange; transition: all ease .3s;}
+
+.top-menu>li:hover ul.submenu {
+	display: block;
+	transition: all ease 1s;
+}
+
+main {
+	padding-top: 79.23px;
+}
+
+.logo-wrap {
 	padding: 1em;
 }
-footer{
+
+footer {
 	padding: 1em 0;
 }
-.fc{
+
+.fc {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
-.margin-top{
+
+.margin-top {
 	margin-top: 1em;
 }
-.margin-top2{
+
+.margin-top2 {
 	margin-top: 2em;
 }
-.margin-bot{
+
+.margin-bot {
 	margin-bottom: 1em;
 }
-.margin-bot2{
+
+.margin-bot2 {
 	margin-bottom: 2em;
 }
-.paddingside{
+
+.paddingside {
 	padding: 0 1em;
 }
-.paddingside05{
+
+.paddingside05 {
 	padding: 0 .5em;
 }
-.fonwei{
+
+.fonwei {
 	font-weight: bold;
 }
-.margin0{
+
+.margin0 {
 	margin: 0;
 }
-a:hover{
+
+a:hover {
 	text-decoration: none;
 }
-.flexBet{
+
+.flexBet {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
-.flexStart{
+
+.flexStart {
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
 }
-.list-inline>li.active{background-color: #4f4f4f;}
-.list-inline>li.active a{color: #fff;}
-i{
+
+.list-inline>li.active {
+	background-color: #4f4f4f;
+}
+
+.list-inline>li.active a {
+	color: #fff;
+}
+
+i {
 	font-style: unset !important;
 }
-.list-inline>li>a{
+
+.list-inline>li>a {
 	display: inline-block;
 	height: 75.09px;
 	line-height: 75.09px;
+}
+
+ul.right-list {
+	padding: 0;
+}
+
+ul.right-list>li {
+	display: flex;
+	justify-content: flex-start;
+	padding: 4px 0;
+}
+
+ul.right-list>li>a {
+	display: inline-block;
+	padding-left: 6px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }

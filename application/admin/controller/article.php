@@ -55,7 +55,7 @@ class Article extends Controller{
 			$value['thumb']=$domain.'\/upload/'.$value['thumb'];
 		}
 		$dataReturn = [
-			'total'     =>model('article')->count(),
+			'total'     =>model('article')->where(`empty('delete_time')`)->count(),
 			'cur'       => $data['pageIndex'],
 			'size'      => $data['pageSize'],
 			'list'      => $dataRes
