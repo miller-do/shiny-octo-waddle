@@ -7,6 +7,7 @@ class Article extends Model{
 	protected $autoWriteTimestamp = true;
     protected $updateTime = 'update_time';
     protected $createTime = false;
+	
 	public function index(){
 		echo "111111111";
 	}

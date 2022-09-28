@@ -11,7 +11,6 @@ Class Article extends Base{
 		$lis= \think\Db::name('article')->where($where)->order('id', 'desc')->paginate(10);
 		$this->assign('list',$lis);
 		$this->assign('cateres',$cateres);
-		$this->rightData();
 		return $this->fetch();
 	}
 	
@@ -34,24 +33,13 @@ Class Article extends Base{
 		
 		//关联查询(推荐使用)
 		// $commentres=$comment->alias('a')->where($where)->join('member b',' b.id = a.from_uid')->order('create_time', 'desc')-> select();
-		$commentres=$comment->order('create_time', 'desc')-> select();
-		// echo '<pre>';
-		// print_r($articleres);
+		// $commentres=$comment->order('create_time', 'desc')-> select();
+		$commentres=model('comment')->with('userInfo')->where('article_id',input('id'))->order('create_time', 'desc')-> select();
+		// dump($commentres);
 		// die;
 		$this->assign('articleres',$articleres);
 		$this->assign('commentres',$commentres);
-		$this->rightData();
 		return $this->fetch();
-	}
-	
-	public function rightData(){
-		$where = '`is_top`=1';
-		$arTop=model('article')->where($where)->limit(6)->select();
-		$arHot=model('article')->order('clickcount', 'desc')->limit(6)->select();
-		// dump($artop);
-		// die;
-		$this->assign('artop',$arTop);
-		$this->assign('arHot',$arHot);
 	}
 	
 }

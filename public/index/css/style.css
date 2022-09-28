@@ -9,6 +9,7 @@ header {
 	left: 0;
 	z-index: 99;
 	width: 100%;
+	padding: 0 10px;
 }
 .top-menu>li{
 	position: relative;
@@ -37,7 +38,7 @@ ul.submenu{
 	display: none;
 	background-color: rgb(107,107,107,.7);
 	padding: 0;
-	box-shadow: 0px 2px 2px #999;
+	box-shadow: 0px 2px 2px #474747;
 }
 
 ul.submenu>li{padding: 8px 10px;}
@@ -50,12 +51,20 @@ ul.submenu>li:hover>a{color: orange; transition: all ease .3s;}
 	transition: all ease 1s;
 }
 
+.searchForm-wrap{
+	padding-right: 20px;
+}
+
+
 main {
-	padding-top: 79.23px;
+	padding-top: 76.1px;
 }
 
 .logo-wrap {
 	padding: 1em;
+}
+.logo-wrap>a>img{
+	width: 106px;
 }
 
 footer {

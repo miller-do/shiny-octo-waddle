@@ -10,7 +10,25 @@ Class Base extends Controller{
 		// }
 		// dump($admin);
 		$this->getTopMenu();//获取后台顶部菜单
+		$this->rightData();
+		$this->getUserInfo();
 	}
+	public function getUserInfo(){
+		$uid=session('member.id');
+		$userInfo=model('user')->find($uid);
+		$this->assign('userInfo',$userInfo);
+	}
+	
+	public function rightData(){
+		$where = '`is_top`=1';
+		$arTop=model('article')->where($where)->limit(6)->select();
+		$arHot=model('article')->order('clickcount', 'desc')->limit(6)->select();
+		// dump($artop);
+		// die;
+		$this->assign('artop',$arTop);
+		$this->assign('arHot',$arHot);
+	}
+	
 	public function getTopMenu(){
 		$cates=Db("cate")->where("is_hide != 1")->order('sort', 'asc')->select();
 		$menus=[];

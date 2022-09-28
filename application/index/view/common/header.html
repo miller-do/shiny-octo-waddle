@@ -1,33 +1,35 @@
 <!-- <div class="loading">加载中……</div> -->
-<header class="navbar-inverse clearfix fc">
-	<div class="logo-wrap col-md-1 col-sm-2 col-xs-2 text-right"><a href="{:url('index/index')}"><img src="__PUBLIC__/index/img/zirsn.png" class="img-responsive"></a></div>
-	<ul class="top-menu nav-bar list-unstyled list-inline col-md-7 col-sm-8 col-xs-7 margin0">
-		<li><a href="{:url('index/index')}">首页</a></li>
-		{voList name="menus" id="cate"}
-			<li {eq name="$Request.param.cate_id" value="$cate.id"} class="active" {/eq} >
-				
-				{if condition ="!empty($cate.subMenu)"}
-					<span>{$cate.catename}</span>
-					<ul class="submenu list-unstyled">
-						{volist name="$cate.subMenu" id="vs" key="k"}
-							<li><a href="{:url($vs.url,['cate_id'=>$vs.id])}">{$vs.catename}</a></li>
-						{/volist}
-					</ul>
-				{else}
-					<a href="{:url($cate.url,['cate_id'=>$cate.id])}">{$cate.catename}</a>
-				{/if}
-				
-			</li>
-		{/voList}
-		<!--
-			实现导航栏的点击自动高亮
-			https://www.php.cn/blog/detail/4318.html
-			参数一 为跳转 到默认控制器下
-			参数二 为当前栏目ID参数，该参数 不是get 与post,模板与后台都可获得该参数
-		 -->
-	</ul>
+<header class="navbar-inverse flexBet">
 	<div class="flexStart">
-		<div class="">
+		<div class="logo-wrap text-right"><a href="{:url('index/index')}"><img src="__PUBLIC__/index/img/zirsn.png" class="img-responsive"></a></div>
+		<ul class="top-menu nav-bar list-unstyled list-inline margin0">
+			<li><a href="{:url('index/index')}">首页</a></li>
+			{voList name="menus" id="cate"}
+				<li {eq name="$Request.param.cate_id" value="$cate.id"} class="active" {/eq} >
+					
+					{if condition ="!empty($cate.subMenu)"}
+						<span>{$cate.catename}</span>
+						<ul class="submenu list-unstyled">
+							{volist name="$cate.subMenu" id="vs" key="k"}
+								<li><a href="{:url($vs.url,['cate_id'=>$vs.id])}">{$vs.catename}</a></li>
+							{/volist}
+						</ul>
+					{else}
+						<a href="{:url($cate.url,['cate_id'=>$cate.id])}">{$cate.catename}</a>
+					{/if}
+					
+				</li>
+			{/voList}
+			<!--
+				实现导航栏的点击自动高亮
+				https://www.php.cn/blog/detail/4318.html
+				参数一 为跳转 到默认控制器下
+				参数二 为当前栏目ID参数，该参数 不是get 与post,模板与后台都可获得该参数
+			 -->
+		</ul>
+	</div>
+	<div class="flexStart">
+		<div class="searchForm-wrap">
 			<form action="{:url('search/index')}" class="text-right form-horizontal" method="get" autocomplete="off">
 				<div id="" class="input-group" style="display: flex;justify-content: flex-end;margin: 15px 0;">
 					<input type="search" class="form-control" style="display: inline-block;width: auto;"
@@ -36,12 +38,12 @@
 				</div>
 			</form>
 		</div>
-		<div class="text-right col-md-5 col-sm-4 col-xs-5 text-warning">
-			<ul class="margin0 list-inline list-unstyled">
+		<div class="text-right text-warning">
+			<ul class="margin0 list-inline list-unstyled pull-left">
 				{php}$member=session('member');{/php}
 				{if condition="!empty($member)"}
-				<li>{$member.account}欢迎登陆xx系统</li>
-				<li><a href="{:url('user/User_center')}"><img src="__PUBLIC__/index/img/portrai.jpg" class="img-circle" style="width: 2em;" ></a></li>
+				<li>{$member.account}</li>
+				<li><a href="{:url('common/User_center')}"><img src="/upload/avatar/{$userInfo.avatar}" class="img-circle" style="width: 2em;" ></a></li>
 				<li><a href="{:url('common/loginOut')}">退出登陆</a></li>
 				<li><a target="_blank" href="{:url('admin/index/index')}">进入后台</a></li>
 				{else /}
