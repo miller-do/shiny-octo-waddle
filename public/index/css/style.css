@@ -43,9 +43,10 @@ ul.submenu{
 
 ul.submenu>li{padding: 8px 10px;}
 ul.submenu>li>a{display: block;color: #fff;}
-ul.submenu>li:hover {background-color: #4f4f4f;}
+ul.submenu>li:hover {background-color: rgb(79,79,79,.5);}
 ul.submenu>li:hover>a{color: orange; transition: all ease .3s;}
-
+ul.submenu>li.active{background-color: rgb(79,79,79,.5);}
+ul.submenu>li.active a{color: orange;}
 .top-menu>li:hover ul.submenu {
 	display: block;
 	transition: all ease 1s;

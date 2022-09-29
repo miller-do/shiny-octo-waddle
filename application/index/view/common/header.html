@@ -3,7 +3,7 @@
 	<div class="flexStart">
 		<div class="logo-wrap text-right"><a href="{:url('index/index')}"><img src="__PUBLIC__/index/img/zirsn.png" class="img-responsive"></a></div>
 		<ul class="top-menu nav-bar list-unstyled list-inline margin0">
-			<li><a href="{:url('index/index')}">首页</a></li>
+			<li {eq name="$Request.param.cate_id" value=""} class="active" {/eq}><a href="{:url('index/index')}">首页</a></li>
 			{voList name="menus" id="cate"}
 				<li {eq name="$Request.param.cate_id" value="$cate.id"} class="active" {/eq} >
 					
@@ -11,7 +11,9 @@
 						<span>{$cate.catename}</span>
 						<ul class="submenu list-unstyled">
 							{volist name="$cate.subMenu" id="vs" key="k"}
-								<li><a href="{:url($vs.url,['cate_id'=>$vs.id])}">{$vs.catename}</a></li>
+								<li {eq name="$Request.param.cate_id" value="$vs.id"} class="active" {/eq}>
+									<a href="{:url($vs.url,['cate_id'=>$vs.id])}">{$vs.catename}</a>
+								</li>
 							{/volist}
 						</ul>
 					{else}
@@ -20,12 +22,6 @@
 					
 				</li>
 			{/voList}
-			<!--
-				实现导航栏的点击自动高亮
-				https://www.php.cn/blog/detail/4318.html
-				参数一 为跳转 到默认控制器下
-				参数二 为当前栏目ID参数，该参数 不是get 与post,模板与后台都可获得该参数
-			 -->
 		</ul>
 	</div>
 	<div class="flexStart">
@@ -43,7 +39,15 @@
 				{php}$member=session('member');{/php}
 				{if condition="!empty($member)"}
 				<li>{$member.account}</li>
-				<li><a href="{:url('common/User_center')}"><img src="/upload/avatar/{$userInfo.avatar}" class="img-circle" style="width: 2em;" ></a></li>
+				<li>
+					<a href="{:url('common/User_center')}">
+						{if condition ="!empty($userinfo.avatar)"}
+						<img src="/upload/avatar/{$userInfo.avatar}" class="img-circle" style="width: 2em;" >
+						{else /}
+						<img src="/index/img/portrai.jpg" class="img-circle" style="width: 2em;" >
+						{/if}
+					</a>
+				</li>
 				<li><a href="{:url('common/loginOut')}">退出登陆</a></li>
 				<li><a target="_blank" href="{:url('admin/index/index')}">进入后台</a></li>
 				{else /}

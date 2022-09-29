@@ -47,19 +47,23 @@
 		{include file="common/header"/}
 		<main class="" style="background-color: #e2e2e2;">
 			<div class="">
-				<img src="__PUBLIC__/index/img/bg-img.jpeg" alt="">
+				<img class="img-responsive" src="__PUBLIC__/index/img/bg-img.jpeg" alt="" style="width: 100%;">
 			</div>
 			<div class="margin-top container">
 				<div class="col-md-12">
 					<div class="col-md-3" style="padding-right: 0;">
 						<div class="avitar-wrap panel panel-default">
 							<div class="fc">
-								<div class="thumbnail margin-top">
-									<img src="/upload/avatar/{$userinfo.avatar}" alt="" style="height: 100px;">
+								<div class="thumbnail margin-top" style="width:120px;">
+									{if condition ="!empty($userinfo.avatar)"}
+										<img class="img-rounded" src="/upload/avatar/{$userinfo.avatar}" alt="" style="height: 100px;">
+									{else}
+										<img class="img-rounded" src="/index/img/portrai.jpg" alt="" style="height: 100px;">
+									{/if}
 								</div>
 							</div>
 							<div class="text-center margin-bot2">
-								<p>{$userinfo.nickname} <span class="label label-warning">管理员</span> </p>
+								<p>{$userinfo.nickname} <span class="label label-warning">VIP</span> </p>
 							</div>
 						</div>
 						<div class="tab-header panel panel-default">
@@ -91,18 +95,20 @@
 											<label for="nickname" class="col-md-2 text-right">昵&ensp;&ensp;称</label>
 											<div class="col-md-10"><input type="text" class="form-control" name="nickname" id="nickname" value="{$userinfo.nickname}" /></div>
 										</div>
-										<div class="form-group clearfix fc">
-											<label class="col-md-2 text-right">性&ensp;&ensp;别</label>
-											<ul class="col-md-10 list-inline margin0">
-												<li>
-													<label class="margin0 paddinside05" for="male">男</label>
-													<input type="radio" name="sex" {eq name="userinfo.sex" value="1" }checked="checked" {/eq} id="male" value="1"/>
-												</li>
-												<li>
-													<label class="margin0 paddinside05" for="female">女</label>
-													<input type="radio" name="sex" {eq name="userinfo.sex" value="2" }checked="checked" {/eq} id="female" value="2"/>
-												</li>
-											</ul>
+										<div class="form-group clearfix">
+											<label class="text-right col-md-2">性&ensp;&ensp;别</label>
+											<div class="col-md-10">
+												<div class="radio">
+													<label class="radio-inline margin0 paddinside05" for="male">
+														<input type="radio" name="sex" {eq name="userinfo.sex" value="1" }checked="checked" {/eq} id="male" value="1"/>
+														男
+													</label>
+													<label class="radio-inline margin0 paddinside05" for="female">
+														<input type="radio" name="sex" {eq name="userinfo.sex" value="2" }checked="checked" {/eq} id="female" value="2"/>
+														女
+													</label>
+												</div>
+											</div>
 										</div>
 										<div class="form-group clearfix fc">
 											<label for="age" class="col-md-2 text-right">年&ensp;&ensp;龄</label>
@@ -120,7 +126,7 @@
 											<label for="education" class="col-md-2 text-right">学&ensp;&ensp;历</label>
 											<!-- <input type="text" class="form-control" name="education" id="education" value="" /> -->
 											<div class="col-md-10">
-												<select name="education">
+												<select name="education" class="form-control" style="width: 200px;">
 													<option value="">请选择</option>
 													<option value="0" {if condition="$userinfo.education eq '0'"}selected="selected" {/if}>未知</option>
 													<option value="1" {eq name="userinfo.education" value="1" }selected="selected" {/eq}>初中</option>
@@ -148,12 +154,12 @@
 											<label for="signature" class="col-md-2 text-right">个性签名</label>
 											<div class="col-md-10">
 												<!-- <input type="text" class="form-control" name="signature" id="signature" value="" /> -->
-												<textarea class="paddinside05" style="width: 100%;resize: none;padding: 6px 12px;" rows="6" cols="84" name="signature" id="signature">{$userinfo.signature}</textarea>
+												<textarea class="form-control" style="width: 100%;resize: none;padding: 6px 12px;" rows="6" cols="84" name="signature" id="signature">{$userinfo.signature}</textarea>
 											</div>
 										</div>
 										<div class="form-group clearfix fc">
 											<label class="col-md-2 text-right">注册时间</label>
-											<div class="col-md-10"><span class="text-danger">{$userinfo.create_time}</span></div>
+											<div class="col-md-10"><span class="">{$userinfo.create_time|date='Y-m-d h:s'}</span></div>
 										</div>
 									</fieldset>
 								</form>
@@ -161,16 +167,19 @@
 								<div class="text-center margin-bot2"><input type="submit" class="btn btn-primary" id="save" value="保存"/></div>
 							</div>
 							<div class="tab-body-list">
-								<div class="" style="padding: 10px;">
+								<div class="margin-top">
 									<form method="post" enctype="multipart/form-data" id="file_upload">
 										<fieldset>
-											<legend>头像设置</legend>
-											<div class="set-avatar">
-												<div class="img-thumbnail" style="width: 200px;height: 100px;">
+											<legend class="text-danger fonwei paddingside">头像设置</legend>
+											<div class="set-avatar fc" style="flex-direction: column;">
+												<div class="img-thumbnail" style="width: 200px;height: 200px;">
 													<img src="/upload/avatar/{$userInfo.avatar}" class="" id="image-preview" style="width: 100%;height: 100%;">
 													<i class="glyphicon glyphicon-plus fc"></i>
 													<input type="file" id="file" name="upload_image" accept="image/gif, image/jpeg, image/png, image/jpg" style="width: 100%;height: 100%;">
 												</div>
+												<p class="text-muted margin-top">
+													为避免图片失真，建议图片大小为200×200 px
+												</p>
 											</div>
 											<!-- <p class="">
 												<input type="file" id="file" name="upload_image" accept="image/gif, image/jpeg, image/png, image/jpg">
@@ -178,45 +187,71 @@
 												<input type="button" class="btn btn-primary" value="保存" onclick="updateAvatar()" />
 											</p> -->
 											<!-- <p id="info"></p> -->
-											<input type="button" class="btn btn-primary" value="保存" onclick="updateAvatar()" />
+											<div class="margin-top margin-bot text-center">
+												<input type="button" class="btn btn-primary" value="保存" onclick="updateAvatar()" />
+											</div>
 										</fieldset>
 									</form>
 								</div>
 							</div>
 							<div class="tab-body-list">
 								<div class="margin-top2 margin-bot2">
-									<form class="resetPassword" action="" method="post">
+									<form class="form-horizontal">
 										<fieldset>
 											<legend class="text-danger fonwei paddingside">修改密码</legend>
-											<div class="">
-												<label for="">旧密码</label><input type="text" name="" id="">
+											<div class="paddingside">
+												<div class="form-group">
+												  <label for="inputEmail3" class="col-sm-2 control-label">旧密码</label>
+												  <div class="col-sm-10">
+												    <input type="password" class="form-control" id="inputEmail3" placeholder="OldPassword">
+												  </div>
+												</div>
+												<div class="form-group">
+												  <label for="inputPassword3" class="col-sm-2 control-label">新密码</label>
+												  <div class="col-sm-10">
+												    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+												  </div>
+												</div>
+												<div class="form-group">
+												  <label for="inputPassword3" class="col-sm-2 control-label">确认新密码</label>
+												  <div class="col-sm-10">
+												    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+												  </div>
+												</div>
 											</div>
-											<div class="">
-												<label for="">新密码</label><input type="text" name="" id="">
-											</div>
-											<div class="">
-												<label for="">确认新密码</label><input type="text" name="" id="">
+											<div class="form-group">
+											  <div class="col-sm-offset-2 col-sm-10">
+											    <button type="submit" class="btn btn-default">保存</button>
+											  </div>
 											</div>
 										</fieldset>
-										<div class="fc">
-											<div class="margin-top2" style="width: 200px;">
-												<input class="btn btn-primary btn-block" type="submit" value="保存"/>
-											</div>
-										</div>
-										
 									</form>
+									
 								</div>
 							</div>
 							<div class="tab-body-list">
-								<div class="">
-									<form class="mui-input-group">
+								<div class="margin-top2">
+									<form class="form-horizontal">
 										<fieldset>
 											<legend class="text-danger fonwei paddingside">身份认证</legend>
+											<div class="form-group">
+											  <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+											  <div class="col-sm-10">
+											    <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+											  </div>
+											</div>
+											<div class="form-group">
+											  <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+											  <div class="col-sm-10">
+											    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+											  </div>
+											</div>
+											<div class="form-group">
+											  <div class="col-sm-offset-2 col-sm-10">
+											    <button type="submit" class="btn btn-default">Sign in</button>
+											  </div>
+											</div>
 										</fieldset>
-										<div class="mui-input-row">
-											<label>input</label>
-											<input type="text" class="mui-input-clear" placeholder="请输入">
-										</div>
 									</form>
 								</div>
 							</div>

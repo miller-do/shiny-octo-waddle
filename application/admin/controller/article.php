@@ -142,7 +142,10 @@ class Article extends Controller{
 		}else{
 			//单个删除
 			$cateInfo=model('article')->find($data);
-			$result=$cateInfo->delete();
+			//删除缩略图文件
+			$res=unlink(env('ROOT_PATH')."public/upload/".$cateInfo['thumb']);
+			//真实删除
+			$result=$cateInfo->delete(true);
 		}
 		$total=model('article')->count();
 		$res=[
