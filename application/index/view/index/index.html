@@ -3,14 +3,9 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
-		<!-- <link rel="stylesheet" type="text/css" href="__PUBLIC__/index/css/bootstrap.min.css" /> -->
-		{load href="__PUBLIC__/index/css/bootstrap.min.css" /}
-		<link rel="stylesheet" type="text/css" href="__PUBLIC__/index/css/swiper.min.css" />
-		<link rel="stylesheet" type="text/css" href="__PUBLIC__/index/js/videojs7_5_5/css/video-js.min.css"/>
-		<link rel="stylesheet" type="text/css" href="__PUBLIC__/index/css/style.css" />
-		<script src="__ROOT__/index/js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
-		<!-- {load href="/static/js/common.js" /} -->
-		<script src="__PUBLIC__/index/js/swper5.0.1.js" type="text/javascript" charset="utf-8"></script>
+		<!-- {load href="/index/css/bootstrap.min.css" /} -->
+		{include file="common/css" /}
+		{include file="common/js" /}
 		<style type="text/css">
 			body {
 				background-color: #ddd;
@@ -30,9 +25,9 @@
 					<!-- Swiper -->
 					<div class="swiper-container">
 						<div class="swiper-wrapper">
-							<div class="swiper-slide"><img src="__PUBLIC__/index/img/banner.jpg" class="img-responsive" /></div>
-							<div class="swiper-slide"><img src="__PUBLIC__/index/img/banner.jpg" class="img-responsive" /></div>
-							<div class="swiper-slide"><img src="__PUBLIC__/index/img/banner2.jpg" class="img-responsive" /></div>
+							<div class="swiper-slide"><img src="/index/img/banner.jpg" class="img-responsive" /></div>
+							<div class="swiper-slide"><img src="/index/img/banner.jpg" class="img-responsive" /></div>
+							<div class="swiper-slide"><img src="/index/img/banner2.jpg" class="img-responsive" /></div>
 						</div>
 						<!-- Add Pagination -->
 						<div class="swiper-pagination"></div>
@@ -47,7 +42,7 @@
 				<div class="flexStart" style="justify-content: space-around;">
 					<div class="" style="margin-bottom: 30px;">
 						<video width="610" height="" autoplay controls preload="auto" poster="" id="my-video" class="video-js">
-							<source src="__PUBLIC__/static/douzhanshen.mp4" type="video/mp4"></source>
+							<source src="/static/douzhanshen.mp4" type="video/mp4"></source>
 							<source src="myvideo.ogv" type="video/ogg"></source>
 							<source src="myvideo.webm" type="video/webm"></source>
 							<object width="" height="" type="application/x-shockwave-flash" data="myvideo.swf">
@@ -70,7 +65,7 @@
 			
 		</main>
 		{include file="common/footer"}
-		<script src="__ROOT__/index/js/videojs7_5_5/js/video.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/index/js/videojs7_5_5/js/video.min.js" type="text/javascript" charset="utf-8"></script>
 		<script>
 			var swiperBanner = new Swiper('banner .swiper-container', {
 				autoplay: true,

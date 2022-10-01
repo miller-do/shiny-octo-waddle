@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>匿名群聊</title>
+    </head>
+    <link rel="stylesheet" href="./public/index/css/bootstrap.min.css" />
+    <script src="./public/index/js/jquery-1.11.0.js"></script>
+    <!-- <script src="../js/bootstrap.min.js"></script> -->
+    <style>
+    body{
+        padding: 0;
+        margin: 0;
+    }
+    .margin-top{
+        margin-top: 20px;
+    }
+    .padding-top{
+        padding-top: 20px;
+    }
+    </style>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <form class="form margin-top">
+                        <h3 class="text-center">聊天系统</h3>
+                        <div class="form-group">
+                            <input class="form-control" name="chat" placeholder="请输入"/>
+                        </div>
+                        <div class="form-group">
+                            <a class="btn btn-sm btn-primary form-control" id="sendBtn">发送</a>
+                        </div>
+                    </form>
+                    <div class="col-md-12 bg-info padding-top">
+                        <div id="link"></div>
+                        <h5>聊天中... </h5>
+                        <div id="list" class="bg-info"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+		// 发送消息
+		$(function(){
+		    var ws = new WebSocket('ws://tpyycms.cn:2346');
+			//ws://127.0.0.1:4137
+		    $("#sendBtn").click(function(){
+		        sendMsg(ws);
+		    });
+		    ws.onopen = function(){
+				console.log("连接成功....");
+		        $('#link').append('连接成功....');
+		    }
+		    ws.onmessage = function(e){
+				console.log("e",e);
+		        let result = JSON.parse(JSON.parse(e.data));
+				console.log("result",result);
+				if (result) {
+					let el = `<div class="clearfix">
+					          <div class="col-md-8 pull-left">
+					          <p><h7 class="text-muted">${result.username}: </h7><small>${result.msg}</small></p>
+					          </div>
+					          <div class="col-md-4 pull-right">
+					          <small class="text-muted">${result.time}</small>
+					          </div></div>`;
+					$('#list').append(el);
+				}
+		    }
+		});
+		
+		function sendMsg(ws){
+		    var content = $('input[name="chat"]').val();
+		    // let el = `<p>我: ${content}</p>`;
+		    // $('#list').append(el);
+		    var username = Math.random();
+		    let data = {
+		        'id': 1001,
+		        'username': username,
+		        'msg': content
+		    };
+		    ws.send(JSON.stringify(data));
+		}
+	</script>
+</html>

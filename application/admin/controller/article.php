@@ -105,6 +105,9 @@ class Article extends Controller{
 		// die;
 		$data=[
 			'title'=>input('post.title'),
+			'author'=>input('post.author'),
+			'desc'=>input('post.desc'),
+			'tags'=>input('post.tags'),
 			'cate'=>input('post.cate'),
 			'is_top'=>input('post.is_top'),
 			'is_open'=>input('post.is_open'),

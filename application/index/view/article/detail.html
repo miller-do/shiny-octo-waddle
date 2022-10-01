@@ -3,11 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<title>{$articleres.title}—文章详情</title>
-		<link rel="stylesheet" type="text/css" href="__PUBLIC__/index/css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="__ROOT__/static/loaders.css.min.css"/>
-		<link rel="stylesheet" type="text/css" href="__PUBLIC__/index/css/style.css"/>
-		<script src="__PUBLIC__/index/js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
-		<!-- <script src="__PUBLIC__/index/js/layer/2.4/layer.js" type="text/javascript" charset="utf-8"></script> -->
+		{include file="common/js" /}
+		{include file="common/css" /}
 		<style type="text/css">
 			body{background-color: #eee;}
 			.loading{
@@ -41,7 +38,7 @@
 									<img src="__PUBLIC__/index/img/zirsn.png" class="img-responsive">
 								</div> -->
 								<div class="">
-									<p class="">南台观芸秀</p>
+									<p class=""><span class="text-muted">作者:</span> {$articleres.author}</p>
 									<!-- 管道符的符号：| -->
 									<p class="">
 										<span class="text-muted">{$articleres.create_time|date='Y-m-d H:i'}</span> 

@@ -3,11 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<title>{$cateres.catename}</title>
-		<link rel="stylesheet" type="text/css" href="__PUBLIC__/index/css/bootstrap.min.css" />
-		<link rel="stylesheet" type="text/css" href="/tpblog/public/static/loaders.css.min.css" />
-		<link rel="stylesheet" type="text/css" href="__PUBLIC__/index/css/style.css" />
-		<script src="__PUBLIC__/index/js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
-		<script src="__PUBLIC__/index/js/layer/2.4/layer.js" type="text/javascript" charset="utf-8"></script>
+		{include file="common/js" /}
+		{include file="common/css" /}
 		<style type="text/css">
 			.loading {
 				width: 100%;
@@ -62,7 +59,7 @@
 													{if condition="$vo['thumb'] neq ''"}
 													<img src="{$Request.domain}/upload/{$vo.thumb}" class="media-object img-responsive">
 													{else /}
-													<img src="/tpblog/public/static/img/noneImg.jpg" class="media-object img-responsive">
+													<img src="/static/img/noneImg.jpg" class="media-object img-responsive">
 													{/if}
 												</span>
 											</a>
@@ -70,6 +67,7 @@
 										<div class="media-body">
 											<h5 class="" style="margin-top: 6px;">
 												<a class="fonwei" href="{:url('article/detail',array('id'=>$vo['id']))}">{$vo.title}</a>
+												&ensp;<span class="text-muted">[{$vo.author}]</span>
 											</h5>
 											<div class="text-muted" style="margin: 5px 0;display: -webkit-box;    
 											-webkit-box-orient: vertical;    
@@ -83,7 +81,7 @@
 											</div>
 											<div class="flexBet margin-top">
 												<div class="tag" style="font-size: 12px;">
-													<span>tags:</span>
+													<span>关键词:</span>
 													<?php
 														//将字符串解析为数组
 														$arr=explode(',',$vo['tags']);
@@ -97,11 +95,13 @@
 													<a href="">宋词</a> -->
 												</div>
 												<div class="info text-right" style="font-size: 12px;">
-													<span>更新时间：<i class="text-muted" style="font-style: unset !important;">{$vo.create_time|date='Y-m-d H:i'}</i> </span>&ensp;
-													<span>分类：{$vo.cate}</span>&nbsp;
-													<span>评论：</span>&nbsp;
-													<span>浏览：{$vo.clickcount}</span>&nbsp;
-													<span><a href="{:url('article/detail',array('id'=>$vo['id']))}">阅读全文></a></span>
+													<div class="">
+														<span>更新时间：<i class="text-muted" style="font-style: unset !important;">{$vo.create_time|date='Y-m-d H:i'}</i> </span>&ensp;
+														<span>分类：{$vo.cate}</span>&nbsp;
+														<span>评论：</span>&nbsp;
+														<span>浏览：{$vo.clickcount}</span>&nbsp;
+														<span><a href="{:url('article/detail',array('id'=>$vo['id']))}">阅读全文></a></span>
+													</div>
 												</div>
 											</div>
 										</div>
