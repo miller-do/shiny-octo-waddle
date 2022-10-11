@@ -8,7 +8,9 @@ Class Article extends Base{
 		$cateres= \think\Db::name('cate')->find($cid);
 		
 		$where = '`is_open`=1 AND `cate`='.$cid;
-		$lis= \think\Db::name('article')->where($where)->order('id', 'desc')->paginate(10);
+		$lis= model('article')->where($where)->order('id', 'desc')->paginate(10);
+		// dump($lis);die;
+		// dump(json_encode($lis));die;
 		$this->assign('list',$lis);
 		$this->assign('cateres',$cateres);
 		return $this->fetch();
@@ -34,11 +36,30 @@ Class Article extends Base{
 		//关联查询(推荐使用)
 		// $commentres=$comment->alias('a')->where($where)->join('member b',' b.id = a.from_uid')->order('create_time', 'desc')-> select();
 		// $commentres=$comment->order('create_time', 'desc')-> select();
-		$commentres=model('comment')->with('userInfo')->where('article_id',input('id'))->order('create_time', 'desc')-> select();
-		// dump($commentres);
+		$comments=model('comment')->with('userInfo')->where('article_id',input('id'))->order('create_time', 'desc')-> select();
+		$coms=[];
+		//组装顶级评论集合
+		foreach ($comments as $k => $comment) {
+			if($comment['pid']==0){
+				$item=$comments[$k];
+				// array_push($coms,$item);
+				$coms[$k]=$item->toArray();
+			}
+		}
+		//返回的是数据集而不是可以直接操作的数组
+		foreach ($coms as $k => $com) {
+			foreach ($comments as $kk => $comment) {
+				//一级菜单的id等于菜单数据的pid
+				if($com['id']==$comment['pid']){
+					// array_push($coms[$k]['subComments'],$subs[$kk]);
+					$coms[$k]['subComments'][$kk]=$comment->toArray();
+				}
+			}
+		}
+		// dump($coms);
 		// die;
 		$this->assign('articleres',$articleres);
-		$this->assign('commentres',$commentres);
+		$this->assign('commentres',$coms);
 		return $this->fetch();
 	}
 	

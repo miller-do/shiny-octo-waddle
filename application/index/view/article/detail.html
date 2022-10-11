@@ -48,21 +48,21 @@
 							</div>
 						</div>
 						
-						<div class="panel panel-body">
+						<!-- <div class="panel panel-body">
 							<blockquote>
 							  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
 							  <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
 							</blockquote>
-						</div>
+						</div> -->
 						
-						<div class="bg-danger margin-bot">
+						<article class="bg-danger margin-bot">
 							<div class="panel panel-default">
 								<!-- <div class="panel-heading"> 正文 </div> -->
 								<div class="panel-body">
 									{$articleres.content |raw|htmlspecialchars_decode}
 								</div>
 							</div>
-						</div>
+						</article>
 						<div class="panel panel-default">
 							<div class="panel-heading"> 精彩评论 </div>
 							<div class="panel-body">
@@ -70,8 +70,9 @@
 									<input type="hidden" name="article_id" id="" value="{$articleres.id}" />
 									<div class="flexStart" style="align-items: flex-start;">
 										<div class="paddingside" style="width: 10%;">
-											{if condition ="!empty($userinfo.avatar)"}
-												<img class="img-responsive" src="/upload/avatar/{$userinfo.avatar}" alt="">
+											{php}$member=session('member');{/php}
+											{if condition ="!empty($member.avatar)"}
+												<img class="img-responsive" src="/upload/avatar/{$member.avatar}" alt="">
 											{else}
 												<img class="img-responsive" src="/index/img/portrai.jpg" alt="">
 											{/if}
@@ -91,8 +92,8 @@
 										</div>
 									</div>
 									
-									<ul class="list-unstyled">
-										{if condition="$commentres neq null"}
+									<ul class="commonts-list list-unstyled">
+										{if condition="!empty($commentres)"}
 											{foreach name="commentres" item="vo" }
 											<li class="paddinside" style="border-bottom: 1px dashed #ddd;padding: 6px 0">
 												<div class="tit flexStart" style="align-items: flex-start;">
@@ -103,19 +104,70 @@
 															<img class="img-responsive img-rounded" src="/index/img/portrai.jpg" alt="">
 														{/if}
 													</div>
-													<div class="">
-														<div class="">
-															<div style="font-size: 15px;font-weight: 500;">{$vo.user_info.nickname}</div>
-															<div class="text-muted"><span>{$vo.create_time|date='Y-m-d h:m'}</span> </div>
+													<div class="" style="width: calc(100% - 84px);">
+														<div class="flexBet">
+															<div class="">
+																<div style="font-size: 15px;font-weight: 500;">{$vo.user_info.nickname}</div>
+																<div class="text-muted"><span>{$vo.create_time|date='Y-m-d h:m'}</span> </div>
+															</div>
+															<div class="paddingside">
+																{if condition ="$vo.user_info.id eq $member.id"}
+																<a href="{:url('comment/del',array('cid'=>$vo['id']))}" class="">删除</a>
+																{/if}
+															</div>
 														</div>
 														<div class="">
 															<div class="margin-bot margin-top" style="font-size: 14px;font-weight: 600;"> {$vo.content}</div>
 															<div>
-																<a href="" class="text-muted">{/*$vo.like*/}赞</a>
-																<a href="" class="text-muted">回复</a>
+																<div class="margin-bot">
+																	<a href="javascript:;" class="text-muted">赞:{$vo.like}</a>
+																	<a href="javascript:;" class="btn-reply text-muted">回复</a>
+																</div>
+																<div class="reply-content hidden margin-bot">
+																	<textarea class="form-control" rows="2" name="content" placeholder="写下你的评论……" style="resize: none;"></textarea>
+																	<div class="text-right margin-top">
+																		<a href="javascript:;" class="btn btn-primary" onclick="publishComment(this,{$vo.id})">发表评论</a>
+																	</div>
+																</div>
+																
+																<ul class="sub-floor list-unstyled">
+																	{if condition ="!empty($vo.subComments)"}
+																		{volist name="$vo.subComments" id="vs" key="k"}
+																		<li class="paddinside">
+																			<div class="reply-history" style="background-color: #f5f5f5;padding: 6px 10px;">
+																				<div class="flexBet">
+																					<div class="">
+																						<div style="font-size: 15px;font-weight: 500;">{$vs.user_info.nickname}</div>
+																						<div class="text-muted"><span>{$vs.create_time|date='Y-m-d h:m'}</span> </div>
+																					</div>
+																					<div class="paddinside">
+																						{if condition ="$vs.user_info.id eq $member.id"}
+																						<a href="{:url('comment/del',array('cid'=>$vs['id']))}" class="">删除</a>
+																						{/if}
+																					</div>
+																				</div>
+																				<div class="margin-bot margin-top" style="font-size: 14px;font-weight: 600;"> {$vs.content}</div>
+																				<div class="margin-bot">
+																					<a href="javascript:;" class="text-muted">赞:{$vo.like}</a>
+																					<a href="javascript:;" class="text-muted" onclick="replyComment(this)">回复</a>
+																				</div>
+																				
+																				<div class="reply-content-sub hidden">
+																					<textarea class="form-control" rows="2" name="content" placeholder="写下你的评论……" style="resize: none;"></textarea>
+																					<div class="text-right margin-top">
+																						<a href="javascript:;" class="btn btn-primary" onclick="publishComment(this,{$vo.id})">发表评论</a>
+																					</div>
+																				</div>
+																			</div>
+																		</li>
+																		{/volist}
+																	{/if}
+																</ul>
+																
 															</div>
 														</div>
 													</div>
+													
 												</div>
 											</li>
 											{/foreach}
@@ -146,6 +198,62 @@
 					$(".loading").fadeOut();
 				}
 			} */
+			$('.commonts-list>li .btn-reply').click(function(){
+				$(this).parents('li').find('.reply-content').toggleClass("hidden")
+				if ($(this).text()=='收起') {
+					$(this).text('回复')
+				}else{
+					$(this).text('收起')
+				}
+			})
+			
+			function replyComment (obj) {
+				$(obj).parents('.reply-history').find('.reply-content-sub').toggleClass("hidden");
+				if ($(obj).text()=='收起') {
+					$(obj).text('回复')
+				}else{
+					$(obj).text('收起')
+				}
+			}
+			
+			function publishComment (obj,pid) {
+				var content=$(obj).parent().parent().find('textarea').val();
+				console.log('content',content);
+				var article_id='{$articleres.id}';
+				var data={
+					pid:pid,
+					content:content,
+					article_id:article_id
+				};
+				$.ajax({
+					url:"{:url('index/comment/index')}",
+					type:'post',
+					data:data,
+					dataType:'json',
+					success:function(res) {
+						console.log('resss',res);
+						if (res.code==1) {
+							layer.msg(res.msg,{
+								icon:1,
+								function(){}
+							})
+							setTimeout(function(){
+								history.go(0);
+							},3000)
+						}else{
+							layer.msg(res.msg,{
+								icon:2,
+								function(){}
+							})
+							setTimeout(function(){
+								var url="{:url('index/common/login')}";
+								location.href=url;
+							},3000)
+							
+						}
+					}
+				})
+			}
 		</script>
 	</body>
 </html>

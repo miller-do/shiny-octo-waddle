@@ -33,13 +33,19 @@
 		{include file="common/header"/}
 		<main class="margin-top">
 			
-			<div class="container">
-				<label>搜索：</label> <span class="">{$keywords}</span>
+			<div class="container margin-bot margin-top">
+				<span>搜索到与</span> <label class="text-danger" style="padding: 0 6px;">{$keywords}</label><span>有关的内容如下：</span>
 			</div>
 			
 			<div class="container">
 				<div class="row">
 					<div class="col-md-9">
+						{if condition="count($searchres) eq 0"}
+							<div class="">
+								<img src="/static/img/none-datas.jpeg" alt="" class="img-responsive">
+							</div>
+							<div class="text-center text-muted">暂无数据</div>
+						{else /}
 						<div class="panel panel-default">
 							<!-- <div class="fonwei panel-heading">
 								<h5 class="text-danger">最新资讯</h5>
@@ -97,11 +103,11 @@
 												</div>
 											</div>
 										</div>
-		
+									
 									</div>
 								</li>
-		
-		
+									
+									
 								{/foreach}
 								<!-- <li class="col-md-4">
 									<div class="thumbnail">
@@ -112,6 +118,8 @@
 							</ul>
 							<?php echo $searchres->render(); ?>
 						</div>
+						{/if}
+							
 					</div>
 					<div class="col-md-3">
 						{include file="common/right"/}

@@ -45,6 +45,11 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-9">
+						{if condition="count($list) eq 0"}
+							<div class="">
+								<img class="img-responsive" src="/static/img/none-datas.jpeg" alt="">
+							</div>
+						{else/}
 						<div class="panel panel-default">
 							<!-- <div class="fonwei panel-heading">
 								<h5 class="text-danger">最新资讯</h5>
@@ -97,19 +102,19 @@
 												<div class="info text-right" style="font-size: 12px;">
 													<div class="">
 														<span>更新时间：<i class="text-muted" style="font-style: unset !important;">{$vo.create_time|date='Y-m-d H:i'}</i> </span>&ensp;
-														<span>分类：{$vo.cate}</span>&nbsp;
+														<span>分类：{$cateres.catename}</span>&nbsp;
 														<span>评论：</span>&nbsp;
 														<span>浏览：{$vo.clickcount}</span>&nbsp;
-														<span><a href="{:url('article/detail',array('id'=>$vo['id']))}">阅读全文></a></span>
+														<!-- <span><a href="{:url('article/detail',array('id'=>$vo['id']))}">阅读全文></a></span> -->
 													</div>
 												</div>
 											</div>
 										</div>
-
+							
 									</div>
 								</li>
-
-
+							
+							
 								{/foreach}
 								<!-- <li class="col-md-4">
 									<div class="thumbnail">
@@ -118,8 +123,11 @@
 									</div>
 								</li> -->
 							</ul>
-							<?php echo $list->render(); ?>
 						</div>
+						<?php echo $list->render(); ?>
+						{/if}
+							
+						
 					</div>
 					<div class="col-md-3">
 						{include file="common/right" /}

@@ -45,7 +45,7 @@
 		{include file="common/header"/}
 		<main class="" style="background-color: #e2e2e2;">
 			<div class="">
-				<img class="img-responsive" src="__PUBLIC__/index/img/bg-img.jpeg" alt="" style="width: 100%;">
+				<img class="img-responsive" src="/index/img/bg-img.jpeg" alt="" style="width: 100%;">
 			</div>
 			<div class="margin-top container">
 				<div class="col-md-12">
@@ -72,6 +72,7 @@
 									<li class="list-group-item">修改头像</li>
 									<li class="list-group-item">修改密码</li>
 									<li class="list-group-item">身份认证</li>
+									<li class="list-group-item">升级会员</li>
 								</ul>
 							</div>
 							<div class="panel">
@@ -89,7 +90,7 @@
 								<form class="user-profile margin-top2">
 									<fieldset id="" class="margin-top margin-bot">
 										<legend class="text-danger fonwei paddingside">基本资料</legend>
-										<div class="form-group clearfix fc">
+										<div class="form-group clearfix">
 											<label for="nickname" class="col-md-2 text-right">昵&ensp;&ensp;称</label>
 											<div class="col-md-10"><input type="text" class="form-control" name="nickname" id="nickname" value="{$userinfo.nickname}" /></div>
 										</div>
@@ -108,19 +109,19 @@
 												</div>
 											</div>
 										</div>
-										<div class="form-group clearfix fc">
+										<div class="form-group clearfix">
 											<label for="age" class="col-md-2 text-right">年&ensp;&ensp;龄</label>
 											<div class="col-md-10"><input type="text" class="form-control" name="age" id="age" value="{$userinfo.age}" /></div>
 										</div>
-										<div class="form-group clearfix fc">
+										<div class="form-group clearfix">
 											<label for="accupation" class="col-md-2 text-right">职&ensp;&ensp;业</label>
 											<div class="col-md-10"><input type="text" class="form-control" name="accupation" id="accupation" value="{$userinfo.accupation}" /></div>
 										</div>
-										<div class="form-group clearfix fc">
+										<div class="form-group clearfix">
 											<label for="major" class="col-md-2 text-right">专&ensp;&ensp;业</label>
 											<div class="col-md-10"><input type="text" class="form-control" name="major" id="major" value="{$userinfo.major}" /></div>
 										</div>
-										<div class="form-group clearfix fc">
+										<div class="form-group clearfix">
 											<label for="education" class="col-md-2 text-right">学&ensp;&ensp;历</label>
 											<!-- <input type="text" class="form-control" name="education" id="education" value="" /> -->
 											<div class="col-md-10">
@@ -136,15 +137,15 @@
 												</select>
 											</div>
 										</div>
-										<div class="form-group clearfix fc">
+										<div class="form-group clearfix">
 											<label for="school" class="col-md-2 text-right">毕业学校</label>
 											<div class="col-md-10"><input type="text" class="form-control" name="school" id="school" value="{$userinfo.school}" /></div>
 										</div>
-										<div class="form-group clearfix fc">
+										<div class="form-group clearfix">
 											<label for="borthAdress" class="col-md-2 text-right">籍&ensp;&ensp;贯</label>
 											<div class="col-md-10"><input type="text" class="form-control" name="borthAdress" id="borthAdress" value="" /></div>
 										</div>
-										<div class="form-group clearfix fc">
+										<div class="form-group clearfix">
 											<label for="liveAdress" class="col-md-2 text-right">现住地址</label>
 											<div class="col-md-10"><input type="text" class="form-control" name="liveAdress" id="liveAdress" value="" /></div>
 										</div>
@@ -152,10 +153,12 @@
 											<label for="signature" class="col-md-2 text-right">个性签名</label>
 											<div class="col-md-10">
 												<!-- <input type="text" class="form-control" name="signature" id="signature" value="" /> -->
-												<textarea class="form-control" style="width: 100%;resize: none;padding: 6px 12px;" rows="6" cols="84" name="signature" id="signature">{$userinfo.signature}</textarea>
+												<textarea class="form-control" style="width: 100%;resize: none;padding: 6px 12px;" rows="6" cols="84" name="signature" id="signature" placeholder="懒汉十级，空空如也……">
+												{$userinfo.signature}
+												</textarea>
 											</div>
 										</div>
-										<div class="form-group clearfix fc">
+										<div class="form-group clearfix">
 											<label class="col-md-2 text-right">注册时间</label>
 											<div class="col-md-10"><span class="">{$userinfo.create_time|date='Y-m-d h:s'}</span></div>
 										</div>

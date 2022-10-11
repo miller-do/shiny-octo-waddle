@@ -48,7 +48,7 @@ class Cate extends Controller{
 	
 	public function add(){
 		
-		$isHide=is_bool(input('post.is_hide'))?'1':'0';
+		$isHide=input('post.is_hide')==true?'1':'0';
 		$data=[
 			'catename'=>input('post.catename'),
 			'pid'=>input('post.pid'),
@@ -79,7 +79,7 @@ class Cate extends Controller{
 		}else{
 			//单个删除
 			$cateInfo=model('Cate')->find($data);
-			$result=$cateInfo->delete();
+			$result=$cateInfo->delete(true);
 		}
 		$total=model('Cate')->count();
 		$res=[

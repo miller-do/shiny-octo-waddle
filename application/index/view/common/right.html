@@ -5,7 +5,7 @@
 	<div class="panel-body">
 		<ul class="right-list">
 			{volist name="artop" id="vo"}
-				<li class="text-left"><span class="label label-warning">荐</span><a href="{:url('article/detail',array('id'=>$vo['id']))}">{$vo.title}</a></li>
+				<li class="text-left"><span class="label label-warning">荐</span><a href="{:url('article/detail',array('id'=>$vo['id']))}">{$vo.title} <span class="text-muted">[{$vo.author}]</span></a></li>
 			{/volist}
 		</ul>
 	</div>
@@ -17,7 +17,7 @@
 	<div class="panel-body">
 		<ul class="right-list">
 			{volist name="arHot" id="vo"}
-				<li class="text-left"><span class="label label-danger">Hot</span><a href="{:url('article/detail',array('id'=>$vo['id']))}">{$vo.title}</a></li>
+				<li class="text-left"><span class="label label-danger">Hot</span><a href="{:url('article/detail',array('id'=>$vo['id']))}">{$vo.title} <span class="text-muted">[{$vo.author}]</span></a></li>
 			{/volist}
 		<ul>
 	</div>

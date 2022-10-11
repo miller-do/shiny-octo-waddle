@@ -43,7 +43,7 @@ return [
     },
     // onMessage
     'onMessage'      => function ($connection, $data) {
-        $connection->send($connection.':'.$data);//'receive success11111111'
+        $connection->send($data);//'receive success11111111'$connection.':'.
     },
     // onClose
     'onClose'        => function ($connection) {

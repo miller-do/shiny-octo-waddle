@@ -41,8 +41,8 @@
 				<li>{$member.account}</li>
 				<li>
 					<a href="{:url('common/User_center')}">
-						{if condition ="!empty($userinfo.avatar)"}
-						<img src="/upload/avatar/{$userInfo.avatar}" class="img-circle" style="width: 2em;" >
+						{if condition ="!empty($member.avatar)"}
+						<img src="/upload/avatar/{$member.avatar}" class="img-circle" style="width: 2em;" >
 						{else /}
 						<img src="/index/img/portrai.jpg" class="img-circle" style="width: 2em;" >
 						{/if}

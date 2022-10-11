@@ -28,8 +28,4 @@ return [
     'count'                 => 4,
     'daemonize'             => false,
     'pidFile'               => Env::get('runtime_path') . 'worker.pid',
-	// onMessage
-	'onMessage'      => function ($connection, $data) {
-	    $connection->send(json_encode($data));//'receive success11111111'
-	},
 ];
