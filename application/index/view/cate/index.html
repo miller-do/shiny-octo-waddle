@@ -82,7 +82,7 @@
 														//将字符串解析为数组
 														$arr=explode(',',$vo['tags']);
 														foreach($arr as $k=>$v){
-															echo "<a href='/tpblog/public/index.php/home/tags/index/tags/$v' style='font-size: 12px;'>$v</a>";
+															echo "<a href='/index.php/index/tags/index/tags/$v' style='font-size: 12px;'>$v</a>";
 															echo " ";
 														}
 													?>
@@ -116,30 +116,7 @@
 						</div>
 					</div>
 					<div class="col-md-3">
-						<div class="panel panel-info">
-							<div class="fonwei panel-heading">
-								<h5 class="text-danger">推荐阅读</h5>
-							</div>
-							<div class="panel-body">
-								<p class="text-left flexBet"><span class="label label-info">Info</span><a href="">对你说古风短句 美到哭五个...</a></p>
-								<p class="text-left flexBet"><span class="label label-info">Info</span><a href="">对你说古风短句 美到哭五个...</a></p>
-								<p class="text-left flexBet"><span class="label label-info">Info</span><a href="">对你说古风短句 美到哭五个...</a></p>
-								<p class="text-left flexBet"><span class="label label-info">Info</span><a href="">对你说古风短句 美到哭五个...</a></p>
-								<p class="text-left flexBet"><span class="label label-info">Info</span><a href="">对你说古风短句 美到哭五个...</a></p>
-							</div>
-						</div>
-						<div class="panel panel-danger">
-							<div class="fonwei panel-heading">
-								<h5 class="text-danger">最热资讯</h5>
-							</div>
-							<div class="panel-body">
-								<p class="text-left flexBet"><span class="label label-info">Info</span><a href="">对你说古风短句 美到哭五个...</a></p>
-								<p class="text-left flexBet"><span class="label label-info">Info</span><a href="">对你说古风短句 美到哭五个...</a></p>
-								<p class="text-left flexBet"><span class="label label-info">Info</span><a href="">对你说古风短句 美到哭五个...</a></p>
-								<p class="text-left flexBet"><span class="label label-info">Info</span><a href="">对你说古风短句 美到哭五个...</a></p>
-								<p class="text-left flexBet"><span class="label label-info">Info</span><a href="">对你说古风短句 美到哭五个...</a></p>
-							</div>
-						</div>
+						{include file="common/right"/}
 					</div>
 				</div>
 			</div>

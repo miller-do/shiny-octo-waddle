@@ -1,21 +1,15 @@
 <?php
-namespace app\home\controller;
+namespace app\index\controller;
 use think\Controller;
-Class Tags extends IndexBase{
+Class Tags extends Base{
 	public function index(){
+		$cateid=input('cate_id');
 		$tags=input('tags');
-		$map['keywords']=['like','%'.$tags.'%'];
-		$lis= \think\Db::name('news_article')->alias('a')->where($map)->paginate(5);
+		// $map['tags']=['like','%'.$tags.'%'];
+		$lis= db('article')->alias('a')->where('title|tags','like','%'.$tags.'%')->paginate(5);
+		$cateres= db('cate')->find($cateid);
 		$this->assign('list',$lis);
-		return $this->fetch();
-	}
-	public function detail(){
-		$arid=input('id');
-		$artLis=db('news_article')->find($arid);
-		
-		// $artLis= \think\Db::name('news_article')->alias('a')->paginate(5);
-		// $this->assign('server',$service);
-		$this->assign('artLis',$artLis);
+		$this->assign('cateres',$cateres);
 		return $this->fetch();
 	}
 }

@@ -3,11 +3,11 @@
 	<head>
 		<meta charset="utf-8">
 		<title>资讯中心</title>
-		<link rel="stylesheet" type="text/css" href="/tpblog/public/home/css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="/tpblog/public/static/loaders.css.min.css"/>
-		<link rel="stylesheet" type="text/css" href="/tpblog/public/home/css/style.css"/>
-		<script src="/tpblog/public/home/js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
-		<script src="/tpblog/public/home/js/layer/2.4/layer.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="/index/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/static/loaders.css.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/index/css/style.css"/>
+		<script src="/index/js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/index/js/layer/2.4/layer.js" type="text/javascript" charset="utf-8"></script>
 		<style type="text/css">
 			.loading{
 				width: 100%;
@@ -25,12 +25,18 @@
 		{include file="common/header"/}
 		<main class="margin-top">
 			<div class="container">
+				<ol class="breadcrumb">
+				  <li><a href="{:url('index/index')}">主页</a></li>
+				  <li><a href="{:url('cate/index',array('cate_id'=>$cateres['id']))}">{$cateres.catename}</a></li>
+				</ol>
+			</div>
+			<div class="container">
 				<div class="row">
 					<div class="col-md-9">
-						<div class="panel panel-info">
-							<div class="fonwei panel-heading">
-								<h5 class="text-danger">最新资讯</h5>
-							</div>
+						<div class="panel panel-default">
+							<!-- <div class="fonwei panel-heading">
+								<h5 class="">最新资讯</h5>
+							</div> -->
 							<ul class="list-unstyled panel-body list-group">
 								{foreach name="list" item="vo" }
 								<li class="list-group-item">
@@ -38,10 +44,10 @@
 										<div class="media-left">
 											<a href="{:url('article/detail',array('id'=>$vo['id']))}">
 												<span style="display: inline-block;width: 150px;height: 100px;">
-													{if condition="$vo['thunmb'] neq ''"}
-													<img src="__ROOT__/{$vo.thunmb}" class="media-object img-responsive">
+													{if condition="$vo['thumb'] neq ''"}
+													<img src="/upload/{$vo.thumb}" class="media-object img-responsive">
 													{else /}
-													<img src="/tpblog/public/static/img/noneImg.jpg" class="media-object img-responsive">
+													<img src="/static/img/noneImg.jpg" class="media-object img-responsive">
 													{/if}
 												</span>
 											</a>
@@ -54,8 +60,8 @@
 											-webkit-box-orient: vertical;    
 											-webkit-line-clamp: 3;    
 											overflow: hidden;">
-												{if condition="$vo['discription'] neq ''"}
-												{$vo.discription}
+												{if condition="$vo['desc'] neq ''"}
+												{$vo.desc}
 												{else /}
 												暂无概述
 												{/if}
@@ -65,9 +71,9 @@
 													<span>tags:</span>
 													<?php
 														//将字符串解析为数组
-														$arr=explode(',',$vo['keywords']);
+														$arr=explode(',',$vo['tags']);
 														foreach($arr as $k=>$v){
-															echo "<a href='/tpblog/public/index.php/home/tags/index/tags/$v' style='font-size: 12px;'>$v</a>";
+															echo "<a href='/index.php/index/tags/index/tags/$v' style='font-size: 12px;'>$v</a>";
 															echo " ";
 														}
 													?>
@@ -76,7 +82,7 @@
 													<a href="">宋词</a> -->
 												</div>
 												<div class="info text-right" style="font-size: 12px;">
-													<span>更新时间：<i class="text-muted" style="font-style: unset !important;">{$vo.update_time}</i> </span>&ensp;
+													<span>更新时间：<i class="text-muted" style="font-style: unset !important;">{$vo.update_time|date='Y-m-d h:m'}</i> </span>&ensp;
 													<span>分类：</span>&nbsp;
 													<span>评论：</span>&nbsp;
 													<span>浏览：</span>&nbsp;
@@ -101,30 +107,7 @@
 						</div>
 					</div>
 					<div class="col-md-3">
-						<div class="panel panel-info">
-							<div class="fonwei panel-heading">
-								<h5 class="text-danger">最热资讯</h5>
-							</div>
-							<div class="panel-body">
-								<p class="text-left flexBet"><span class="label label-info">Info</span><a href="">对你说古风短句 美到哭五个...</a></p>
-								<p class="text-left flexBet"><span class="label label-info">Info</span><a href="">对你说古风短句 美到哭五个...</a></p>
-								<p class="text-left flexBet"><span class="label label-info">Info</span><a href="">对你说古风短句 美到哭五个...</a></p>
-								<p class="text-left flexBet"><span class="label label-info">Info</span><a href="">对你说古风短句 美到哭五个...</a></p>
-								<p class="text-left flexBet"><span class="label label-info">Info</span><a href="">对你说古风短句 美到哭五个...</a></p>
-							</div>
-						</div>
-						<div class="panel panel-danger">
-							<div class="fonwei panel-heading">
-								<h5 class="text-danger">最热资讯</h5>
-							</div>
-							<div class="panel-body">
-								<p class="text-left flexBet"><span class="label label-info">Info</span><a href="">对你说古风短句 美到哭五个...</a></p>
-								<p class="text-left flexBet"><span class="label label-info">Info</span><a href="">对你说古风短句 美到哭五个...</a></p>
-								<p class="text-left flexBet"><span class="label label-info">Info</span><a href="">对你说古风短句 美到哭五个...</a></p>
-								<p class="text-left flexBet"><span class="label label-info">Info</span><a href="">对你说古风短句 美到哭五个...</a></p>
-								<p class="text-left flexBet"><span class="label label-info">Info</span><a href="">对你说古风短句 美到哭五个...</a></p>
-							</div>
-						</div>
+						{include file="common/right"/}
 					</div>
 				</div>
 			</div>
