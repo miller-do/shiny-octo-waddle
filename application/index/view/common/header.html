@@ -5,19 +5,19 @@
 		<ul class="top-menu nav-bar list-unstyled list-inline margin0">
 			<li {eq name="$Request.param.cate_id" value=""} class="active" {/eq}><a href="{:url('index/index')}">首页</a></li>
 			{voList name="menus" id="cate"}
-				<li {eq name="$Request.param.cate_id" value="$cate.id"} class="active" {/eq} >
+				<li {eq name="$Request.param.cate_id" value="$cate.id"} class="active" {/eq} {eq name="$Request.param.cate_pid" value="$cate.id"} class="active" {/eq} >
 					
 					{if condition ="!empty($cate.subMenu)"}
 						<span>{$cate.catename}</span>
 						<ul class="submenu list-unstyled">
 							{volist name="$cate.subMenu" id="vs" key="k"}
 								<li {eq name="$Request.param.cate_id" value="$vs.id"} class="active" {/eq}>
-									<a href="{:url($vs.url,['cate_id'=>$vs.id])}">{$vs.catename}</a>
+									<a href="{:url($vs.url,['cate_id'=>$vs.id,'cate_pid'=>$vs.pid])}">{$vs.catename}</a>
 								</li>
 							{/volist}
 						</ul>
 					{else}
-						<a href="{:url($cate.url,['cate_id'=>$cate.id])}">{$cate.catename}</a>
+						<a href="{:url($cate.url,['cate_id'=>$cate.id,'cate_pid'=>$vs.pid])}">{$cate.catename}</a>
 					{/if}
 					
 				</li>
