@@ -138,11 +138,11 @@ i {
 	font-style: unset !important;
 }
 
-.list-inline>li>a {
+/* .list-inline>li>a {
 	display: inline-block;
 	height: 75.09px;
 	line-height: 75.09px;
-}
+} */
 
 ul.right-list {
 	padding: 0;
@@ -160,4 +160,7 @@ ul.right-list>li>a {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+.text-white{
+	color: #fff;
 }
