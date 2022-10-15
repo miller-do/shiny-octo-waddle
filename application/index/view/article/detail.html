@@ -136,26 +136,34 @@
 																		<li class="paddinside">
 																			<div class="reply-history" style="background-color: #f5f5f5;padding: 6px 10px;">
 																				<div class="flexBet">
-																					<div class="">
-																						<div style="font-size: 15px;font-weight: 500;">{$vs.user_info.nickname}</div>
-																						<div class="text-muted"><span>{$vs.create_time|date='Y-m-d h:m'}</span> </div>
+																					<div class="flexStart" style="align-items: flex-start;width: 100%;">
+																						<div class="" style="width: 4em;">
+																							{if condition ="!empty($vs.user_info.avatar)"}
+																								<img class="img-responsive img-rounded" src="/upload/avatar/{$vs.user_info.avatar}" alt="">
+																							{else}
+																								<img class="img-responsive img-rounded" src="/index/img/portrai.jpg" alt="">
+																							{/if}
+																						</div>
+																						<div class="paddingside" style="width: calc(100% - 56px);">
+																							<div style="font-size: 15px;font-weight: 500;">{$vs.user_info.nickname}</div>
+																							<div class="text-muted"><span>{$vs.create_time|date='Y-m-d h:m'}</span> </div>
+																							<div class="margin-bot margin-top" style="font-size: 14px;font-weight: 600;"> {$vs.content}</div>
+																							<div class="margin-bot">
+																								<a href="javascript:;" class="text-muted">赞:{$vo.like}</a>
+																								<a href="javascript:;" class="text-muted" onclick="replyComment(this)">回复</a>
+																							</div>
+																							<div class="reply-content-sub hidden">
+																								<textarea class="form-control" rows="2" name="content" placeholder="写下你的评论……" style="resize: none;"></textarea>
+																								<div class="text-right margin-top">
+																									<a href="javascript:;" class="btn btn-primary" onclick="publishComment(this,{$vo.id})">发表评论</a>
+																								</div>
+																							</div>
+																						</div>
 																					</div>
 																					<div class="paddinside">
 																						{if condition ="$vs.user_info.id eq $member.id"}
 																						<a href="{:url('comment/del',array('cid'=>$vs['id']))}" class="">删除</a>
 																						{/if}
-																					</div>
-																				</div>
-																				<div class="margin-bot margin-top" style="font-size: 14px;font-weight: 600;"> {$vs.content}</div>
-																				<div class="margin-bot">
-																					<a href="javascript:;" class="text-muted">赞:{$vo.like}</a>
-																					<a href="javascript:;" class="text-muted" onclick="replyComment(this)">回复</a>
-																				</div>
-																				
-																				<div class="reply-content-sub hidden">
-																					<textarea class="form-control" rows="2" name="content" placeholder="写下你的评论……" style="resize: none;"></textarea>
-																					<div class="text-right margin-top">
-																						<a href="javascript:;" class="btn btn-primary" onclick="publishComment(this,{$vo.id})">发表评论</a>
 																					</div>
 																				</div>
 																			</div>

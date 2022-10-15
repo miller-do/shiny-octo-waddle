@@ -3,7 +3,7 @@
 	<div class="flexStart">
 		<div class="logo-wrap text-right"><a href="{:url('index/index')}"><img src="/index/img/zirsn.png" class="img-responsive"></a></div>
 		<ul class="top-menu nav-bar list-unstyled list-inline margin0">
-			<li {eq name="$Request.param.cate_id" value=""} class="active" {/eq}><a href="{:url('index/index')}">首页</a></li>
+			<li {eq name="$Request.controller" value="Index"} class="active" {/eq}><a href="{:url('index/index')}">首页</a></li>
 			{voList name="menus" id="cate"}
 			<li class="{if condition='($Request.param.cate_id==$cate.id) OR ($Request.param.cate_pid==$cate.id)'}active{/if}">	
 				{if condition ="!empty($cate.subMenu)"}
@@ -57,6 +57,11 @@
 		</div>
 	</div>
 </header>
+<script type="text/javascript">
+	$('.top-menu>li').hover(function(){
+		$(this).find('ul').stop().slideToggle();
+	})
+</script>
 <!-- 
  p($request->domain());     // 获取当前域名 https://baidu.com
  p($request->baseFile());   // 获取当前入口文件 /jdcrm/public/index.php

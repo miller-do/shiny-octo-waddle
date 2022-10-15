@@ -5,41 +5,6 @@
 		<title>个人中心</title>
 		{include file="common/js" /}
 		{include file="common/css" /}
-		<style>
-			.tab-body-list{
-				display: none;
-			}
-			.tab-body-list.active{
-				display: block;
-			}
-			.resetPassword label{
-				display: inline-block;
-				width: 200px;
-				text-align: right;
-				padding-right: 10px;
-			}
-			.set-avatar>div.img-thumbnail{
-				position: relative;
-			}
-			.set-avatar input{
-				position: absolute;
-				left: 0;
-				top: 0;
-				opacity: 0;
-				z-index: 9;
-				cursor: pointer;
-			}
-			.set-avatar i{
-				width: 100%;
-				height: 100%;
-				position: absolute;
-				left: 0;
-				top: 0;
-				font-size: 50px;
-				text-align: center;
-				color: #ccc;
-			}
-		</style>
 	</head>
 	<body>
 		{include file="common/header"/}
@@ -68,11 +33,12 @@
 							<div class="panel margin-top">
 								<h4 class="paddingside">个人资料</h4>
 								<ul class="list-group">
-									<li class="list-group-item active">基本资料</li>
+									<li class="list-group-item">基本资料</li>
 									<li class="list-group-item">修改头像</li>
 									<li class="list-group-item">修改密码</li>
 									<li class="list-group-item">身份认证</li>
 									<li class="list-group-item">升级会员</li>
+									<li class="list-group-item active">会员抽奖</li>
 								</ul>
 							</div>
 							<div class="panel">
@@ -86,7 +52,7 @@
 					</div>
 					<div class="col-md-9">
 						<div class="tab-body panel panel-default">
-							<div class="tab-body-list active">
+							<div class="tab-body-list">
 								<form class="user-profile margin-top2">
 									<fieldset id="" class="margin-top margin-bot">
 										<legend class="text-danger fonwei paddingside">基本资料</legend>
@@ -251,6 +217,52 @@
 											  <div class="col-sm-offset-2 col-sm-10">
 											    <button type="submit" class="btn btn-default">Sign in</button>
 											  </div>
+											</div>
+										</fieldset>
+									</form>
+								</div>
+							</div>
+							<div class="tab-body-list">
+								<div class="margin-top2">
+									<form class="form-horizontal">
+										<fieldset>
+											<legend class="text-danger fonwei paddingside">升级会员</legend>
+											<div class="form-group">
+											  <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+											  <div class="col-sm-10">
+											    <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+											  </div>
+											</div>
+											<div class="form-group">
+											  <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+											  <div class="col-sm-10">
+											    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+											  </div>
+											</div>
+											<div class="form-group">
+											  <div class="col-sm-offset-2 col-sm-10">
+											    <button type="submit" class="btn btn-default">Sign in</button>
+											  </div>
+											</div>
+										</fieldset>
+									</form>
+								</div>
+							</div>
+							<div class="tab-body-list active">
+								<div class="margin-top2">
+									<form class="form-horizontal">
+										<fieldset>
+											<legend class="text-danger fonwei paddingside">会员抽奖</legend>
+											<div class="fc margin-bot"
+											oncontextmenu='return false' 
+											ondragstart='return false' 
+											onselectstart ='return false' 
+											onselect='document.selection.empty()' 
+											oncopy='document.selection.empty()' 
+											onbeforecopy='return false' 
+											>
+											<!-- onmouseup='document.selection.empty()' -->
+												{include file="common/luck_draw"/}
 											</div>
 										</fieldset>
 									</form>

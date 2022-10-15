@@ -84,7 +84,7 @@ class Article extends Controller{
 			    return $file->getError();
 			}
 		}
-		$data['tags']=str_relace('，',',',input('post.tags'));
+		// $data['tags']=str_relace('，',',',input('post.tags'));
 		$cateInfo=model('article')->find($data['id']);
 		$result=$cateInfo->allowField(true)->save($data,['id' => $data['id']]);
 		if($result){
@@ -107,7 +107,7 @@ class Article extends Controller{
 			'title'=>input('post.title'),
 			'author'=>input('post.author'),
 			'desc'=>input('post.desc'),
-			'tags'=>str_relace('，',',',input('post.tags')),
+			'tags'=>input('post.tags'),//str_relace('，',',',input('post.tags')),
 			'cate'=>input('post.cate'),
 			'is_top'=>input('post.is_top'),
 			'is_open'=>input('post.is_open'),
