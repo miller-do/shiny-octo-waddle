@@ -3,19 +3,9 @@ namespace app\admin\controller;
 use think\Db;
 use think\Controller;
 use Token;
-class Index extends Controller
+use Request;
+class Common extends Base
 {
-	// private function makeToken(){
-	//     $str = md5(uniqid(md5(microtime(true)), true)); //生成一个不会重复的字符串
-	//     $str = sha1($str); //加密
-	//     return $str;
-	// }
-	
-	// public function verifyToken(){
-	// 	$token = input('token');
-	// 	$res = Token::verify_token($token);
-	// 	var_dump($res);
-	// }
 	public function proFile(){
 		// {
 		// 	code:200,
@@ -27,7 +17,9 @@ class Index extends Controller
 		// 	},
 		// 	msg:''
 		// }
-		return json(['code'=>200,'data'=>'$result','msg'=>'成功']);
+		$accept= Request::instance()->header('accept');
+		
+		return json(['code'=>200,'data'=>$accept,'msg'=>'成功']);
 	}
 	
 	public function login()
@@ -54,6 +46,7 @@ class Index extends Controller
 			'username'=>input('post.username'),
 			'password'=>input('post.password')
 		];
+		print_r($data);
 		$token = Token::create_token($data);
 		//调用模型的方法（当前模块/其它模块下）
 		// new \app\common\model\Admin();

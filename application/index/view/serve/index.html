@@ -28,12 +28,12 @@
 						<?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
 						<li class="col-md-2">
 							<div class="thumbnail">
-								<a href="<?php echo url('server/detail',array('serid'=>$vo['id'])); ?>">
+								<a href="<?php echo url('article/detail',array('serid'=>$vo['id'])); ?>">
 									<?php if($vo['thumb'] != ''): ?>
-									<img src="/index/img/yz630.jpg" class="img-responsive">
+									<img src="__PUBLIC__/index/img/yz630.jpg" class="img-responsive">
 									<?php else: ?>
 									<!-- 暂无缩略图 -->
-									<img src="/tpblog/public/static/img/noneImg.jpg" class="img-responsive">
+									<img src="__PUBLIC__/static/img/noneImg.jpg" class="img-responsive">
 									<!-- <img src="/tpblog/public/home/img/yz630.jpg" class="img-responsive"> -->
 									<?php endif; ?>
 								</a>
@@ -41,30 +41,6 @@
 							</div>
 						</li>
 						<?php endforeach; endif; else: echo "" ;endif; ?>
-						<!-- <li class="col-md-4">
-							<div class="thumbnail">
-								<a href=""><img src="/tpblog/public/home/img/yz630.jpg" class="img-responsive"></a>
-								<p class="text-center"><a href="">案例1</a></p>
-							</div>
-						</li>
-						<li class="col-md-4">
-							<div class="thumbnail">
-								<a href=""><img src="/tpblog/public/home/img/yz630.jpg" class="img-responsive"></a>
-								<p class="text-center"><a href="">案例1</a></p>
-							</div>
-						</li>
-						<li class="col-md-4">
-							<div class="thumbnail">
-								<a href=""><img src="/tpblog/public/home/img/yz630.jpg" class="img-responsive"></a>
-								<p class="text-center"><a href="">案例1</a></p>
-							</div>
-						</li>
-						<li class="col-md-4">
-							<div class="thumbnail">
-								<a href=""><img src="/tpblog/public/home/img/yz630.jpg" class="img-responsive"></a>
-								<p class="text-center"><a href="">案例1</a></p>
-							</div>
-						</li> -->
 					</ul>
 					<?php echo $list->render(); ?>
 				</div>
@@ -73,24 +49,22 @@
 						<h3 class="text-muted">经典案例</h3>
 					</div>
 					<ul class="list-unstyled panel-body">
-						<li class="col-md-4">
+						<?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+						<li class="col-md-2">
 							<div class="thumbnail">
-								<a href=""><img src="/index/img/yz630.jpg" class="img-responsive"></a>
-								<p class="text-center"><a href="">案例1</a></p>
+								<a href="<?php echo url('article/detail',array('serid'=>$vo['id'])); ?>">
+									<?php if($vo['thumb'] != ''): ?>
+									<img src="__PUBLIC__/index/img/yz630.jpg" class="img-responsive">
+									<?php else: ?>
+									<!-- 暂无缩略图 -->
+									<img src="__PUBLIC__/static/img/noneImg.jpg" class="img-responsive">
+									<!-- <img src="/tpblog/public/home/img/yz630.jpg" class="img-responsive"> -->
+									<?php endif; ?>
+								</a>
+								<p class="text-center"><a href=""><?php echo $vo['title']; ?></a></p>
 							</div>
 						</li>
-						<li class="col-md-4">
-							<div class="thumbnail">
-								<a href=""><img src="/index/img/yz630.jpg" class="img-responsive"></a>
-								<p class="text-center"><a href="">案例1</a></p>
-							</div>
-						</li>
-						<li class="col-md-4">
-							<div class="thumbnail">
-								<a href=""><img src="/index/img/yz630.jpg" class="img-responsive"></a>
-								<p class="text-center"><a href="">案例1</a></p>
-							</div>
-						</li>
+						<?php endforeach; endif; else: echo "" ;endif; ?>
 					</ul>
 				</div>
 			</div>

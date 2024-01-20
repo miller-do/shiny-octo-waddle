@@ -33,9 +33,10 @@ return [
     // 标签库标签结束标记
     'taglib_end'   => '}',
 	'tpl_replace_string' =>[
-		// '__PUBLIC__' => $_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST'].rtrim(dirname($_SERVER['SCRIPT_NAME'])),
-		// '__STATIC__'=>'/static',
-		// '__JS__' => '/static/javascript',
+		'__PUBLIC__' => $_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST'].rtrim(dirname($_SERVER['SCRIPT_NAME'])),
+		'__STATIC__'=>'/static',
+		'__JS__' => '/static/javascript',
+		'__UPLOAD__' => '/upload',
 		// '__ROOT__' => ROOT_PATH,//站点根目录
 	],
 ];

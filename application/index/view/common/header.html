@@ -1,7 +1,7 @@
 <!-- <div class="loading">加载中……</div> -->
 <header class="navbar-inverse flexBet">
 	<div class="flexStart">
-		<div class="logo-wrap text-right"><a href="{:url('index/index')}"><img src="/index/img/zirsn.png" class="img-responsive"></a></div>
+		<div class="logo-wrap text-right"><a href="{:url('index/index')}"><img src="__PUBLIC__/index/img/zirsn.png" class="img-responsive"></a></div>
 		<ul class="top-menu nav-bar list-unstyled list-inline margin0">
 			<li {eq name="$Request.controller" value="Index"} class="active" {/eq}><a href="{:url('index/index')}">首页</a></li>
 			{voList name="menus" id="cate"}
@@ -41,13 +41,14 @@
 				<li>
 					<a href="{:url('common/User_center')}">
 						{if condition ="!empty($member.avatar)"}
-						<img src="/upload/avatar/{$member.avatar}" class="img-circle" style="width: 2em;" >
+						<img src="__PUBLIC__/upload/avatar/{$member.avatar}" class="img-circle" style="width: 2em;height: 2em;object-fit: cover;" >
 						{else /}
-						<img src="/index/img/portrai.jpg" class="img-circle" style="width: 2em;" >
+						<img src="__PUBLIC__/index/img/portrai.jpg" class="img-circle" style="width: 2em;height: 2em;object-fit: cover;" >
 						{/if}
 					</a>
 				</li>
 				<li><a href="{:url('common/loginOut')}">退出登陆</a></li>
+				<!-- tp-blog-vue -->
 				<li><a target="_blank" href="{:url('admin/index/index')}">进入后台</a></li>
 				{else /}
 				<li><a href="{:url('common/login')}">登陆</a></li>
