@@ -38,5 +38,6 @@ return [
 		'__JS__' => '/static/javascript',
 		'__UPLOAD__' => '/upload',
 		// '__ROOT__' => ROOT_PATH,//站点根目录
+		//ps:模板中/指的是public文件目录
 	],
 ];

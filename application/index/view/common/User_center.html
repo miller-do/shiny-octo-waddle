@@ -10,7 +10,7 @@
 		{include file="common/header"/}
 		<main class="" style="background-color: #e2e2e2;">
 			<div class="">
-				<img class="img-responsive" src="__PUBLIC__/index/img/bg-img.jpeg" alt="" style="width: 100%;">
+				<img class="img-responsive" src="/index/img/bg-img.jpeg" alt="" style="width: 100%;">
 			</div>
 			<div class="margin-top container">
 				<div class="col-md-12">
@@ -19,9 +19,9 @@
 							<div class="fc">
 								<div class="thumbnail margin-top" style="width:120px;">
 									{if condition ="!empty($userinfo.avatar)"}
-										<img class="img-rounded" src="__PUBLIC__/upload/avatar/{$userinfo.avatar}" alt="" style="height: 100px;object-fit: cover;">
+										<img class="img-rounded" src="/upload/avatar/{$userinfo.avatar}" alt="" style="height: 100px;object-fit: cover;">
 									{else}
-										<img class="img-rounded" src="__PUBLIC__/index/img/portrai.jpg" alt="" style="height: 100px;object-fit: cover;">
+										<img class="img-rounded" src="/index/img/portrai.jpg" alt="" style="height: 100px;object-fit: cover;">
 									{/if}
 								</div>
 							</div>
@@ -140,7 +140,7 @@
 											<legend class="text-danger fonwei paddingside">头像设置</legend>
 											<div class="set-avatar fc" style="flex-direction: column;">
 												<div class="img-thumbnail" style="width: 200px;height: 200px;">
-													<img src="__PUBLIC__/upload/avatar/{$userInfo.avatar}" class="" id="image-preview" style="width: 100%;height: 100%;object-fit: cover;">
+													<img src="/upload/avatar/{$userInfo.avatar}" class="" id="image-preview" style="width: 100%;height: 100%;object-fit: cover;">
 													<i class="glyphicon glyphicon-plus fc"></i>
 													<input type="file" id="file" name="upload_image" accept="image/gif, image/jpeg, image/png, image/jpg" style="width: 100%;height: 100%;">
 												</div>

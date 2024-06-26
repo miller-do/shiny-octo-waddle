@@ -5,6 +5,18 @@ use think\Controller;
 use Token;
 class Index extends Controller
 {
+	public function index(){
+	    	$cur_namespace=__NAMESPACE__;//获取当前的命名空间
+			$cur_controller=__CLASS__;//获取当前的类，包含命名空间
+			$cur_method=__METHOD__;//获取当前类的方法，包含命名空间
+			$cur_function=__FUNCTION__;//获取当前的方法，不包含命名空间
+	//      echo "<pre>";
+			// $cur1_controller=str_replace($cur_namespace.'\\', '', $cur_controller);//单个反斜杠表示转义符
+	//		var_dump($cur1_controller);
+			// $url=$cur1_controller.'/'.$cur_function;
+			// $this->getMenus($url);
+	        return $this->fetch();
+	}
 	// private function makeToken(){
 	//     $str = md5(uniqid(md5(microtime(true)), true)); //生成一个不会重复的字符串
 	//     $str = sha1($str); //加密
@@ -16,6 +28,7 @@ class Index extends Controller
 	// 	$res = Token::verify_token($token);
 	// 	var_dump($res);
 	// }
+	
 	public function proFile(){
 		// {
 		// 	code:200,

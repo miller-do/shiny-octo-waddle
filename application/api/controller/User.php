@@ -68,8 +68,8 @@ class User extends Base
 		// new \app\common\model\Admin();
 		$result=model('Admin')->login($data);
 		$userInfo = Db::name('admin')->field('id,token')->find();
-		// print_r($expires_time);
-		// die;
+		print_r($expires_time);
+		die;
 		$token = "";
 		if($_SERVER["HTTP_AUTHORIZATION"]!=$userInfo['token']){
 			$token = Token::create_token($data);
