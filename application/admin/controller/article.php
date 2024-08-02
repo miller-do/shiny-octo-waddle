@@ -123,6 +123,7 @@ class Article extends Controller{
 		    // 上传失败获取错误信息
 		    return $file->getError();
 		}
+		//allowField(true):过滤非表中字段
 		$result=model('article')->allowField(true)->articleAdd($data);
 		
 		if($result==1){

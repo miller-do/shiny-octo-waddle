@@ -184,3 +184,27 @@ All rights reserved。
 ThinkPHP® 商标和著作权所有者为上海顶想信息科技有限公司。
 
 更多细节参阅 [LICENSE.txt](LICENSE.txt)
+
+
+部署问题记录
+1.vue2部署图标未显示
+解决：找到build/utils.js 修改publicPath:'../../',
+```javascript
+if (options.extract) {
+  return ExtractTextPlugin.extract({
+    use: loaders,
+	publicPath:'../../',
+    fallback: 'vue-style-loader'
+  })
+} else {
+  return ['vue-style-loader'].concat(loaders)
+}
+```
+
+
+2.上传文件 报mkdir(): Permission denied
+解决：修改/www/wwwroot/yycms文件权限
+
+3.navicat远程连接数据库
+navicat 报错 1045 - Access denied for user 'root'@'localhost' (using password: YES)
+宝塔->数据库 查看并复制列表数据密码字段至navicat密码登录

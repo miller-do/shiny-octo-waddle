@@ -14,7 +14,7 @@ class Cate extends Controller{
 		];
 		$pageIndex=$data['pageIndex'];
 		$pageSize=$data['pageSize'];
-		$cates=model('Cate')->order('sort', 'asc')->page($pageIndex,$pageSize)->select();
+		$cates=model('Cate')->order('create_time', 'desc')->page($pageIndex,$pageSize)->select();
 		//包含软删除
 		//$cates=model('Cate')->withTrashed()->order('sort', 'asc')->page($pageIndex,$pageSize)->select();
 		//仅软删除数据
