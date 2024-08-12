@@ -6,8 +6,11 @@
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteRule ^(.*)$ index.php/?s=$1 [QSA,PT,L]
+  
+  
   #增加如下内容
-  RewriteCond %{HTTP:Authorization} .
-  RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+  #RewriteCond %{HTTP:Authorization} ^(.+)$
+  #RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+  
 </IfModule>
 

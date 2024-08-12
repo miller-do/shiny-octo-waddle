@@ -10,8 +10,9 @@ class Index extends Base{
 	public function Index(){
 		
 		// $cate=Db("menu")->select();
-		// // echo "<pre>";
-		// // print_r($cate);
+		// echo "<pre>";
+		// print_r($cate);
+		// die;
 		return $this -> fetch();
 	}
 }

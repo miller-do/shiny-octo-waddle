@@ -36,7 +36,14 @@ class Base extends Controller
 		// header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization");
 		// $this->encryption = new Encryption();//加密
 		// $token=Request::instance()->header("Authorization");    //从header里获取token
+		
+		$header=Request::instance()->header();
+		
+		// dump($_SERVER);
+		// die;
+		
 		$token=$_SERVER["HTTP_AUTHORIZATION"];
+		
 		//request()->header("Authorization"); 
 		// $info = Request::header();
 		//request()->header("Authorization");    //从header里获取token
