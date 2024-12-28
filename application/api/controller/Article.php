@@ -65,6 +65,8 @@ Class Article extends Controller{
 		$comments=model('article')->hasMany('Comment','article_id','id')->where('article_id',$id)->order('create_time', 'desc')->select();
 		// dump($comments);
 		// die;
+		$domain=Request::domain(true);//env('ROOT_PATH');
+		$articleres['thumb']=$domain.'\/upload/'.$articleres['thumb'];
 		$articleres['comments']=$comments;
 		if($articleres){
 			return json(['code'=>200,'data'=>$articleres,'msg'=>'文章获取成功']);

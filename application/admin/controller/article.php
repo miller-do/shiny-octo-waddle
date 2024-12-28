@@ -4,6 +4,7 @@ use think\Db;
 use think\Controller;
 use Token;
 use think\facade\Request;
+use think\File;
 
 class Article extends Controller{
 	
@@ -146,8 +147,12 @@ class Article extends Controller{
 		}else{
 			//单个删除
 			$cateInfo=model('article')->find($data);
+			$path=COMMON_PATH.'\/upload/'.$cateInfo['thumb'];
+			//env('ROOT_PATH')."public/upload/".$cateInfo['thumb']
+			// echo $path;
+			// die;
 			//删除缩略图文件
-			$res=unlink(env('ROOT_PATH')."public/upload/".$cateInfo['thumb']);
+			$res=is_file($path) && $this->unlink($path);
 			//真实删除
 			$result=$cateInfo->delete(true);
 		}
@@ -160,5 +165,9 @@ class Article extends Controller{
 		}else{
 			return json(['code'=>500,'data'=>$result,'msg'=>'栏目删除失败']);
 		}
+	}
+	
+	 private function unlink($path){
+		return is_file($path) && unlink($path);
 	}
 }
